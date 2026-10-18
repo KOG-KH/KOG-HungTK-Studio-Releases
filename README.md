@@ -7,6 +7,8 @@ Hệ sinh thái công cụ tổng hợp tự động hóa, tải video đa nền
 ## 🌟 3 Trụ Cột Tính Năng Chính
 
 ### 1. 📜 KOG Scripts (Công Cụ Tiện Ích & Tự Động Hóa Browser)
+![KOG Scripts Preview](docs/screenshots/tab1_scripts.png)
+
 * **Gom MP4:** Tự động quét và gom toàn bộ file video MP4 từ mọi thư mục con ra ngoài.
 * **Lấy tên file:** Trích xuất toàn bộ danh sách tên file trong thư mục ra Clipboard hoặc file txt.
 * **Đổi tên hàng loạt:** Đánh số thứ tự, xóa ký tự thừa, chuẩn hóa định dạng tên file đồng loạt.
@@ -14,14 +16,22 @@ Hệ sinh thái công cụ tổng hợp tự động hóa, tải video đa nền
 * **Lọc file trùng lặp cơ bản:** Quét dọn các file trùng lặp trên ổ đĩa.
 * **Kho Snippet trực tuyến:** Tự động nạp các script crawl Facebook Ads Library, TikTok, HeyGen, Unity, SocialPeta trực tiếp vào RAM và Clipboard (F12 Console).
 
+---
+
 ### 2. 📥 Video Downloader (Tải Video Đa Nền Tảng & Toàn Bộ Kênh)
+![Video Downloader Preview](docs/screenshots/tab2_downloader.png)
+
 * **Tải Video Đa Nền Tảng (All-in-One):** Hỗ trợ TikTok, Facebook Ads Library, YouTube (Shorts & Long-form), Instagram, SocialPeta.
 * **Bóc tách luồng CDN trực tiếp:** Kéo video từ `fbcdn.net` và SocialPeta cực nhanh qua stream I/O không qua render.
 * **Chống chặn IP (Anti-Ban):** Tự động nghỉ ngẫu nhiên 3–5 giây giữa các lượt tải để chống lỗi Rate Limit 429.
 * **Safety Net Protection:** Tự động thêm mã hậu tố ngẫu nhiên để chống ghi đè file trùng tên.
 * **Tải Toàn Bộ Kênh (Bulk Channel):** Quét toàn bộ hoặc số lượng chỉ định video từ kênh TikTok / YouTube kèm cơ chế giả lập Smart TV / Mobile Web Client (`player_client=tv,mweb`) và hỗ trợ Cookies.
 
-### 3. 🎬 Video Editor Studio (Biên Tập & Dựng Video Chuyên Nghiệp 13-in-1)
+---
+
+### 3. 🎬 Video Editor Studio (Biên Tập & Dựng Video Chuyên Nghiệp 12-in-1)
+![Video Editor Studio Preview](docs/screenshots/tab3_editor.png)
+
 * **Chuyển đổi Fast Copy:** Đổi đuôi MOV, WebM, MKV sang MP4 chuẩn cực nhanh không mất chất lượng.
 * **Tối ưu 9:16 TikTok / Reels:** Đổi tỉ lệ khung hình kèm nền mờ nghệ thuật (Blur Background).
 * **Nén Mintegral & Tăng nét TikTok:** Tối ưu dung lượng 50–70% và thuật toán Unsharp Denoise.

@@ -22,6 +22,9 @@ ZIP_FILE="$INSTALL_DIR/KOG_Studio_macOS.zip"
 DESKTOP_DIR="$HOME/Desktop"
 DESKTOP_LAUNCHER="$DESKTOP_DIR/KOG HungTK Studio.command"
 
+# 0. Đảm bảo tắt tiến trình cũ nếu đang chạy ngầm
+killall -9 KOG_Studio 2>/dev/null || true
+
 # 1. Tạo thư mục làm việc riêng biệt
 mkdir -p "$INSTALL_DIR"
 cd "$INSTALL_DIR"

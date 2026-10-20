@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cẩm Nang Hướng Dẫn KOG Studio All-in-One</title>
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-hover: #0ea5e9;
+            --border-color: #334155;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --code-bg: #0b1120;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+            min-height: 100vh;
+        }
+        /* Sidebar */
+        aside {
+            width: 300px;
+            background-color: var(--bg-secondary);
+            border-right: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            overflow-y: auto;
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+        }
+        .brand {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .nav-group-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin: 16px 8px 8px;
+            font-weight: 700;
+        }
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            margin-bottom: 4px;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--text-main);
+            background-color: rgba(56, 189, 248, 0.12);
+            border-left: 3px solid var(--accent);
+        }
+        /* Main Content */
+        main {
+            margin-left: 300px;
+            flex: 1;
+            padding: 40px 60px;
+            max-width: 1200px;
+        }
+        header {
+            margin-bottom: 40px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        header p { color: var(--text-muted); font-size: 1.05rem; }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-right: 6px;
+        }
+        .badge-win { background-color: #0078d4; color: white; }
+        .badge-mac { background-color: #555555; color: white; }
+        .badge-pro { background-color: #8b5cf6; color: white; }
+        
+        section {
+            margin-bottom: 50px;
+            scroll-margin-top: 30px;
+        }
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin: 24px 0 12px;
+        }
+        p { margin-bottom: 14px; color: #cbd5e1; }
+        ul, ol { margin-left: 24px; margin-bottom: 16px; color: #cbd5e1; }
+        li { margin-bottom: 8px; }
+        
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+        .card-icon {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+        }
+        .card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+        .card p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+        }
+
+        /* Callouts */
+        .callout {
+            border-left: 4px solid var(--accent);
+            background-color: rgba(56, 189, 248, 0.08);
+            border-radius: 0 8px 8px 0;
+            padding: 16px 20px;
+            margin: 20px 0;
+        }
+        .callout-warning {
+            border-left-color: var(--warning);
+            background-color: rgba(245, 158, 11, 0.08);
+        }
+        .callout-success {
+            border-left-color: var(--success);
+            background-color: rgba(16, 185, 129, 0.08);
+        }
+        .callout-title {
+            font-weight: 700;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+        th {
+            background-color: #0b1120;
+            color: var(--accent);
+            font-weight: 600;
+        }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background-color: rgba(255, 255, 255, 0.02); }
+
+        /* Code snippets */
+        code {
+            background-color: var(--code-bg);
+            color: #38bdf8;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, Monaco, "Courier New", monospace;
+            font-size: 0.88em;
+            border: 1px solid var(--border-color);
+        }
+        pre {
+            background-color: var(--code-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+        pre code {
+            border: none;
+            padding: 0;
+            background: transparent;
+            color: #e2e8f0;
+            font-size: 0.9rem;
+        }
+
+        /* Workflow Steps */
+        .step-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .step-item {
+            display: flex;
+            gap: 16px;
+            background-color: var(--bg-card);
+            padding: 18px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+        .step-num {
+            background: linear-gradient(135deg, #38bdf8, #6366f1);
+            color: white;
+            font-weight: 800;
+            font-size: 1.1rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .step-content h4 {
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+            color: var(--text-main);
+        }
+        .step-content p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR NAVIGATION -->
+    <aside>
+        <div class="brand">
+            <span>🚀</span> KOG STUDIO PRO
+        </div>
+        <div class="nav-group-title">Khởi Động & Cài Đặt</div>
+        <a href="#quickstart" class="nav-link">⚡ Khởi động nhanh</a>
+        <a href="#workspace" class="nav-link">📁 Cấu trúc Thư mục</a>
+        
+        <div class="nav-group-title">Chi Tiết Công Cụ</div>
+        <a href="#scripts" class="nav-link">📜 [1] KOG Scripts</a>
+        <a href="#downloader" class="nav-link">📥 [2] Video Downloader</a>
+        <a href="#editor" class="nav-link">🎬 [3] Video Editor Studio</a>
+        <a href="#ai-assistant" class="nav-link">🤖 [4] KOG AI Assistant</a>
+        
+        <div class="nav-group-title">Vận Hành & Quy Trình</div>
+        <a href="#workflow" class="nav-link">🔄 Quy trình mẫu từ A - Z</a>
+        <a href="#specs" class="nav-link">📐 Tiêu chuẩn TikTok & Ads</a>
+        <a href="#troubleshooting" class="nav-link">🛠️ Xử lý sự cố thường gặp</a>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <header>
+            <div>
+                <span class="badge badge-win">Windows 10/11</span>
+                <span class="badge badge-mac">Apple macOS</span>
+                <span class="badge badge-pro">Chạy Offline 100%</span>
+            </div>
+            <h1>Cẩm Nang Sử Dụng KOG Studio All-in-One</h1>
+            <p>Tài liệu hướng dẫn trực quan nội bộ, tích hợp sẵn trong máy và không cần truy cập GitHub.</p>
+        </header>
+
+        <!-- KHỞI ĐỘNG NHANH -->
+        <section id="quickstart">
+            <h2>⚡ 1. Khởi Động Nhanh (Chỉ Cần 1 File Duy Nhất)</h2>
+            <p>Hệ thống được đóng gói tự động hóa 100%, bạn không cần cấu hình dòng lệnh phức tạp:</p>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">🪟</div>
+                    <h4>Dành Cho Người Dùng Windows</h4>
+                    <p>Nhấp đúp chuột vào file <code>KOG Studio Windows.bat</code>. Hệ thống sẽ tự động cấu hình môi trường Python, kiểm tra bản quyền thiết bị và mở giao diện Menu điều khiển.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🍎</div>
+                    <h4>Dành Cho Người Dùng Apple macOS</h4>
+                    <p>Nhấp đúp chuột vào file <code>KOG Studio MacOS.command</code>. Cửa sổ Terminal sẽ tự động khởi động và tải toàn bộ module làm việc.</p>
+                </div>
+            </div>
+
+            <div class="callout callout-success">
+                <div class="callout-title">🔒 Bảo mật & Xác thực bản quyền tự động:</div>
+                Nếu máy của bạn chưa được cấp quyền, màn hình sẽ hiển thị <strong>Mã phần cứng (Hardware UUID)</strong> và <strong>tự động sao chép vào bộ nhớ tạm (Clipboard)</strong>. Bạn chỉ cần gửi mã này qua Discord cho Admin <code>.hungtk</code> để được kích hoạt.
+            </div>
+        </section>
+
+        <!-- CẤU TRÚC THƯ MỤC -->
+        <section id="workspace">
+            <h2>📁 2. Bản Đồ Thư Mục Làm Việc (Workspace Structure)</h2>
+            <p>Hệ sinh thái KOG Studio tự động quản lý các thư mục dữ liệu, bạn chỉ cần đặt file đúng vị trí:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Thư Mục</th>
+                        <th style="width: 25%;">Mục Đích Sử Dụng</th>
+                        <th style="width: 50%;">Chi Tiết & Quy Ước</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>Inputs/</code></td>
+                        <td>Đầu vào liên kết & cấu hình</td>
+                        <td>Chứa file <code>links.txt</code>. Bạn dán danh sách link TikTok, FB, YouTube cần tải vào đây (mỗi link 1 dòng).</td>
+                    </tr>
+                    <tr>
+                        <td><code>Downloads/</code></td>
+                        <td>Lưu trữ video tải về</td>
+                        <td>Tự động phân loại theo nền tảng: <code>Downloads/TikTok</code>, <code>Downloads/Facebook</code>, <code>Downloads/YouTube</code>...</td>
+                    </tr>
+                    <tr>
+                        <td><code>InputVideos/</code></td>
+                        <td>Nguyên liệu Video cần dựng</td>
+                        <td>Thả toàn bộ video bạn muốn biên tập, cắt ghép, đổi tỉ lệ, nén vào đây.</td>
+                    </tr>
+                    <tr>
+                        <td><code>TikTok_Ready/</code></td>
+                        <td>Video đạt chuẩn TikTok Ads</td>
+                        <td>Chứa các video đã vượt qua bài kiểm tra chuẩn sách TikTok (Bitrate &ge; 516k, khung hình dọc 9:16 Lanczos).</td>
+                    </tr>
+                    <tr>
+                        <td><code>CompressedVideos/</code></td>
+                        <td>Video nén nhẹ cho Mintegral</td>
+                        <td>Dung lượng tối ưu giảm 50 - 70%, đáp ứng giới hạn khắt khe &lt; 5MB/10MB của sàn quảng cáo.</td>
+                    </tr>
+                    <tr>
+                        <td><code>FinalVideos/</code></td>
+                        <td>Thành phẩm sau cắt dựng</td>
+                        <td>Video sau khi ghép Intro, Outro, chèn logo, khung viền, hoặc tráo Visual Hook.</td>
+                    </tr>
+                    <tr>
+                        <td><code>ExtractedAudio/</code></td>
+                        <td>Âm thanh bóc tách</td>
+                        <td>Chứa các file MP3 được trích xuất từ video nguồn.</td>
+                    </tr>
+                    <tr>
+                        <td><code>OutputImages/</code></td>
+                        <td>Ảnh Thumbnail & Frame</td>
+                        <td>Chứa ảnh chụp khung hình sắc nét trích xuất từ video.</td>
+                    </tr>
+                    <tr>
+                        <td><code>SortedVideos/</code></td>
+                        <td>Video phân loại ngôn ngữ</td>
+                        <td>Chứa video đã được AI nhận diện tiếng và chia vào từng thư mục ngôn ngữ (vi, en, th, id...).</td>
+                    </tr>
+                    <tr>
+                        <td><code>Archive/</code></td>
+                        <td>Lưu trữ đóng gói dự án</td>
+                        <td>Dự án cũ được gom và nén lưu trữ theo ngày tháng để giải phóng ổ cứng.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- KOG SCRIPTS -->
+        <section id="scripts">
+            <h2>📜 3. Nhóm [1] KOG Scripts (Công Cụ Tiện Ích & Tự Động Hóa)</h2>
+            <p>Bộ công cụ hỗ trợ xử lý dữ liệu hàng loạt cực nhanh và tự động hóa thao tác trên trình duyệt:</p>
+
+            <div class="step-container">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                        <h4>Gom Toàn Bộ File MP4 (Collect MP4)</h4>
+                        <p>Tự động quét đệ quy mọi ngóc ngách của các thư mục con và di chuyển tất cả file video <code>.mp4</code> ra ngoài thư mục chính. Rất tiện khi bạn vừa giải nén một bộ tài nguyên phức tạp.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <h4>Lấy Tên File Hàng Loạt (Get File Names)</h4>
+                        <p>Trích xuất toàn bộ danh sách tên file trong thư mục ra Clipboard và xuất file <code>file_names.txt</code>. Phù hợp để làm báo cáo thống kê hoặc nhập vào file Excel quản lý.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                        <h4>Đổi Tên File Hàng Loạt (Rename Files Toolkit)</h4>
+                        <p>Hỗ trợ đổi tên đồng loạt: Đánh số thứ tự (ví dụ <code>video_001.mp4</code>, <code>video_002.mp4</code>), xóa ký tự thừa, thêm tiền tố/hậu tố, chuẩn hóa chữ thường.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">4</div>
+                    <div class="step-content">
+                        <h4>Xuất Bản & Lấy Link YouTube (Publish Video & Link YouTube)</h4>
+                        <p><strong>Publish Video YouTube - Ver 3:</strong> Tự động duyệt qua toàn bộ video nháp (Drafts) trong YouTube Studio, tự động nhấn "Tiếp" &rarr; Chọn "Công khai" &rarr; "Lưu/Xuất bản" &rarr; "Đóng" hoàn toàn tự động.<br>
+                        <strong>Trích Xuất Playlist CSV:</strong> Bóc tách toàn bộ tiêu đề, link xem và VideoID của danh sách video trên kênh ra file CSV <code>youtube_playlist_links.csv</code>.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">5</div>
+                    <div class="step-content">
+                        <h4>Kho Script Tiện Ích Trực Tuyến (F12 Console Snippets)</h4>
+                        <p>Chứa sẵn 9+ bộ script chuyên dụng: Crawl Facebook Ads Library, Crawl kênh TikTok, Lọc quốc gia Unity, Tự động chọn ngôn ngữ HeyGen. <strong>Cơ chế tự động:</strong> Bạn chỉ cần chọn script trên menu, nội dung sẽ được nạp vào Clipboard &rarr; Mở trình duyệt ấn <code>F12</code> &rarr; Chọn tab <code>Console</code> &rarr; Ấn <code>Ctrl+V</code> (hoặc <code>Cmd+V</code>) và nhấn <code>Enter</code>!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIDEO DOWNLOADER -->
+        <section id="downloader">
+            <h2>📥 4. Nhóm [2] Video Downloader (Tải Video Đa Nền Tảng & Toàn Bộ Kênh)</h2>
+            <p>Công cụ tải video tốc độ cao, bóc tách luồng CDN trực tiếp và chống chặn IP thông minh:</p>
+
+            <h3>4.1. Tải Video Đa Nền Tảng (All-in-One Multi-Platform)</h3>
+            <ul>
+                <li><strong>Nền tảng hỗ trợ:</strong> TikTok (bản gốc không dính logo watermark), Facebook Ads Library (kéo luồng gốc từ <code>fbcdn.net</code>), YouTube (cả Shorts và Video dài), Instagram Reels, SocialPeta.</li>
+                <li><strong>2 Phương thức nạp link:</strong>
+                    <ol>
+                        <li><em>Nhập trực tiếp:</em> Dán 1 link video cần tải vào màn hình console.</li>
+                        <li><em>Tải hàng loạt:</em> Dán toàn bộ danh sách link vào file <code>Inputs/links.txt</code> (mỗi link 1 dòng), công cụ sẽ tải tuần tự hoàn toàn tự động.</li>
+                    </ol>
+                </li>
+                <li><strong>Cơ chế Anti-Ban & Safety-Net:</strong> Tự động nghỉ ngẫu nhiên 3 - 5 giây giữa các lượt tải để chống lỗi Rate Limit 429 và tự động gắn hậu tố chống trùng tên file.</li>
+            </ul>
+
+            <h3>4.2. Tải Toàn Bộ Kênh (Bulk Channel Downloader)</h3>
+            <ul>
+                <li>Nhập đường dẫn trang cá nhân TikTok hoặc kênh YouTube (Ví dụ: <code>https://www.tiktok.com/@username</code> hoặc <code>https://www.youtube.com/@channel/shorts</code>).</li>
+                <li>Hệ thống hỏi số lượng video muốn tải (Nhập số cụ thể, hoặc ấn Enter để tải toàn bộ kênh).</li>
+                <li>Tích hợp cơ chế giả lập <strong>Smart TV & Mobile Web Client</strong> để vượt qua hệ thống chặn bot tự động của YouTube.</li>
+                <li><em>Mẹo tải video yêu cầu đăng nhập:</em> Đặt file <code>cookies.txt</code> xuất từ trình duyệt vào thư mục gốc của KOG Studio, công cụ sẽ tự động nạp cookies để tải.</li>
+            </ul>
+        </section>
+
+        <!-- VIDEO EDITOR STUDIO -->
+        <section id="editor">
+            <h2>🎬 5. Nhóm [3] Video Editor Studio (Biên Tập & Dựng Video Chuyên Nghiệp 13-in-1)</h2>
+            <p>Trạm xử lý video đa năng, tối ưu hóa cho quảng cáo TikTok Ads, Facebook Ads và sàn Mintegral:</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h4>1. Chuyển Đổi Fast Copy (Convert)</h4>
+                    <p>Đổi định dạng MOV, WebM, MKV, AVI sang MP4 chuẩn chỉ trong 1 - 2 giây nhờ cơ chế Stream Copy không cần render lại.</p>
+                </div>
+                <div class="card">
+                    <h4>2. Tỉ Lệ 9:16 Dọc & Nền Mờ (Resize TikTok)</h4>
+                    <p>Tự động chuyển video ngang 16:9 hoặc vuông 1:1 sang khung hình dọc 9:16 chuẩn TikTok/Reels với hiệu ứng nền mờ (Blur Background) chuyên nghiệp.</p>
+                </div>
+                <div class="card">
+                    <h4>3. Nén Mintegral & Tăng Nét TikTok</h4>
+                    <p>Thuật toán 2-Pass nén dung lượng xuống dưới 5MB/10MB cho mạng quảng cáo Mintegral; Bộ lọc Unsharp Denoise giúp video sáng nét vượt trội.</p>
+                </div>
+                <div class="card">
+                    <h4>4. Chuẩn Hóa TikTok Ads Policy</h4>
+                    <p>Tự động upscale Bitrate &ge; 516 kbps, scale tối thiểu 1080x1920 (Lanczos) và cắt độ dài 5 - 60s để video không bao giờ bị TikTok Ads từ chối duyệt.</p>
+                </div>
+                <div class="card">
+                    <h4>5. Ghép Intro, Outro, Khung & Logo</h4>
+                    <p>Nối đoạn mở đầu (Intro), kết thúc (Outro), chèn watermark logo thương hiệu hoặc dán đè khung viền quảng cáo trong suốt (Transparent Frame).</p>
+                </div>
+                <div class="card">
+                    <h4>6. Tráo Hook Visual (A/B Testing)</h4>
+                    <p>Cắt 3 giây đầu của video và ghép clip Hook giật gân mới, đồng thời <strong>giữ nguyên vẹn luồng âm thanh gốc xuyên suốt</strong>. Tuyệt chiêu A/B Testing chuyển đổi cao!</p>
+                </div>
+                <div class="card">
+                    <h4>7. Trích Xuất Ảnh Nét Cao (Frame Extractor)</h4>
+                    <p>Tự động chụp frame ảnh nét nhất từ video (độ phân giải gốc) để phục vụ thiết kế Thumbnail hoặc banner quảng cáo.</p>
+                </div>
+                <div class="card">
+                    <h4>8. Xử Lý Âm Thanh Chuyên Sâu (Audio Tool)</h4>
+                    <p>Trích xuất âm thanh MP3 từ video, thay thế nhạc nền mới, hoặc hòa trộn âm lượng giữa giọng nói và nhạc nền theo tỉ lệ mong muốn.</p>
+                </div>
+                <div class="card">
+                    <h4>9. Phân Loại Ngôn Ngữ AI (Whisper Sorter)</h4>
+                    <p>Trí tuệ nhân tạo OpenAI Whisper tự động nghe video, nhận diện tiếng (Anh, Việt, Thái, Trung, Indo...) và gom vào các thư mục riêng.</p>
+                </div>
+                <div class="card">
+                    <h4>10. Cắt Gọt Video Hàng Loạt (Trim Tool)</h4>
+                    <p>Cắt bỏ số giây đầu (Intro rác) hoặc số giây đuôi (Call-to-action cũ) của hàng loạt video cùng lúc theo thời gian chỉ định.</p>
+                </div>
+                <div class="card">
+                    <h4>11. Lọc Trùng Thông Minh (Smart Stream Dedup)</h4>
+                    <p>Băm mã MD5 riêng biệt cho luồng Video và Audio. Giúp loại bỏ video trùng lặp tuyệt đối mà <strong>không xóa nhầm</strong> các video localize (cùng hình nhưng khác tiếng).</p>
+                </div>
+                <div class="card">
+                    <h4>12. Dọn Dẹp & Đóng Gói (Workspace Cleanup)</h4>
+                    <p>1-Click đóng gói toàn bộ dự án vào thư mục <code>Archive/</code> theo ngày giờ, dọn dẹp các file rác trung gian để giải phóng dung lượng ổ đĩa.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- KOG AI ASSISTANT -->
+        <section id="ai-assistant">
+            <h2>🤖 6. Nhóm [4] KOG AI Assistant (Trợ Lý Trí Tuệ Nhân Tạo Chuyên Nghiệp)</h2>
+            <p>Trợ lý AI thông minh tương tự KOG APK Tester Studio, được huấn luyện chuyên sâu cho Marketer, Video Creator và Media Producer:</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h4>⚡ 100% Miễn Phí & Sẵn Sàng Ngay</h4>
+                    <p>Tích hợp sẵn KOG Marketer Brain v2.0 hoạt động hoàn toàn Offline, phản hồi tức thì, không yêu cầu API Key hay tiêu tốn Token.</p>
+                </div>
+                <div class="card">
+                    <h4>✨ Kết Nối Google Gemini Live</h4>
+                    <p>Hỗ trợ tùy chọn gắn Google Gemini API Key để tận dụng mô hình Gemini 1.5 Flash thông minh vượt bậc từ Google AI.</p>
+                </div>
+                <div class="card">
+                    <h4>🎯 Chuyên Gia Kỹ Thuật TikTok & Mintegral</h4>
+                    <p>Tư vấn chính xác thông số bitrate &ge; 516 kbps, độ phân giải 1080x1920 (9:16), kỹ thuật nén &lt; 3MB cho Mintegral Playable Ads.</p>
+                </div>
+                <div class="card">
+                    <h4>💡 Soạn Kịch Bản Viral & Ý Tưởng Hook 3s</h4>
+                    <p>Tạo kịch bản video quảng cáo theo công thức chuẩn: 3s Hook giữ chân &rarr; Nỗi đau khách hàng &rarr; Giải pháp &rarr; Call to Action.</p>
+                </div>
+            </div>
+
+            <div class="callout callout-success">
+                <div class="callout-title">
+                    <span>💡</span> Hai Phương Thức Trò Chuyện Trực Quan:
+                </div>
+                <ul>
+                    <li><strong>Tab [4] KOG AI Assistant:</strong> Không gian chat rộng rãi toàn màn hình, hiển thị bảng so sánh, sao chép code 1-click và gợi ý chuyên sâu.</li>
+                    <li><strong>Nút Nổi & Drawer Trượt Nhanh (Floating Chat):</strong> Nhấn nút tròn 🤖 ở góc dưới bên phải màn hình bất cứ lúc nào để mở cửa sổ trượt nhanh mà không làm gián đoạn công việc đang làm trên các Tab khác.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- QUY TRÌNH MẪU -->
+        <section id="workflow">
+            <h2>🔄 7. Quy Trình Phối Hợp Mẫu (Standard Workflow Từ A &rarr; Z)</h2>
+            <p>Quy trình chuẩn giúp sản xuất hàng loạt video quảng cáo chất lượng cao trong thời gian ngắn nhất:</p>
+
+            <div class="step-container">
+                <div class="step-item">
+                    <div class="step-num">A</div>
+                    <div class="step-content">
+                        <h4>Bước 1: Thu Thập & Tải Tài Nguyên</h4>
+                        <p>Dùng <code>[1] Kho Script tiện ích</code> (Crawl Facebook Ads Library) để lấy danh sách link video đối thủ &rarr; Dán vào <code>Inputs/links.txt</code> &rarr; Chạy <code>[2] All-in-One Downloader</code> để kéo toàn bộ video về thư mục <code>Downloads/</code>.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">B</div>
+                    <div class="step-content">
+                        <h4>Bước 2: Gom & Chuẩn Hóa Tên File</h4>
+                        <p>Chạy <code>[1] Collect MP4</code> để gom video về thư mục <code>InputVideos/</code> &rarr; Chạy <code>Rename Toolkit</code> để đánh số thứ tự gọn gàng <code>video_001.mp4</code>, <code>video_002.mp4</code>.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">C</div>
+                    <div class="step-content">
+                        <h4>Bước 3: Dựng Khung Hình & Sáng Tạo Hook</h4>
+                        <p>Chạy <code>[3] Resize TikTok 9:16</code> tạo nền mờ &rarr; Chạy <code>[6] Hook Visual</code> để tạo ra 5 - 10 biến thể test quảng cáo khác nhau từ 1 video gốc bằng cách tráo 3 giây đầu.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">D</div>
+                    <div class="step-content">
+                        <h4>Bước 4: Chuẩn Hóa Xuất Bản (TikTok Ads / Mintegral)</h4>
+                        <p>Nếu chạy TikTok Ads: Chạy tính năng <code>[4] Chuẩn hóa TikTok Ads Policy</code> (Đảm bảo bitrate &ge; 516k không bị từ chối) &rarr; Nếu chạy Mintegral: Chạy tính năng <code>[3] Nén Mintegral</code> (Dung lượng siêu nhẹ &lt; 5MB).</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">E</div>
+                    <div class="step-content">
+                        <h4>Bước 5: Lưu Trữ Gọn Gàng</h4>
+                        <p>Chạy <code>[12] Dọn dẹp & Lưu trữ (Workspace Cleanup)</code> để gom thành phẩm vào Archive và giải phóng bộ nhớ máy tính.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TIÊU CHUẨN KỸ THUẬT -->
+        <section id="specs">
+            <h2>📐 7. Bảng Tiêu Chuẩn Kỹ Thuật Quảng Cáo Video</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nền Tảng / Kênh</th>
+                        <th>Tỉ Lệ Khung Hình</th>
+                        <th>Độ Phân Giải Chuẩn</th>
+                        <th>Bitrate Tối Thiểu</th>
+                        <th>Giới Hạn Dung Lượng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>TikTok Ads</strong></td>
+                        <td>9:16 (Dọc)</td>
+                        <td>&ge; 1080 x 1920 px</td>
+                        <td>&ge; 516 kbps</td>
+                        <td>&le; 500 MB (Tối ưu &lt; 50MB)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Facebook Reels / Ads</strong></td>
+                        <td>9:16 (Dọc) hoặc 1:1 (Vuông)</td>
+                        <td>1080 x 1920 px / 1080 x 1080 px</td>
+                        <td>&ge; 1000 kbps</td>
+                        <td>&le; 4 GB</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mintegral Ad Network</strong></td>
+                        <td>9:16 hoặc 16:9</td>
+                        <td>720 x 1280 px / 1080 x 1920 px</td>
+                        <td>800 - 1500 kbps</td>
+                        <td>&le; 5 MB - 10 MB (Bắt buộc nhẹ)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>YouTube Shorts</strong></td>
+                        <td>9:16 (Dọc)</td>
+                        <td>1080 x 1920 px (60fps khuyên dùng)</td>
+                        <td>&ge; 2500 kbps</td>
+                        <td>Thời lượng &le; 60 giây</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- XỬ LÝ SỰ CỐ -->
+        <section id="troubleshooting">
+            <h2>🛠️ 8. Hướng Dẫn Xử Lý Sự Cố Thường Gặp (Troubleshooting)</h2>
+            
+            <div class="callout callout-warning">
+                <div class="callout-title">⚠️ Sự cố 1: YouTube báo lỗi "Sign in to confirm you're not a bot"</div>
+                <p><strong>Nguyên nhân:</strong> YouTube vừa cập nhật cơ chế siết chặt bot crawl.</p>
+                <p><strong>Cách khắc phục:</strong> Cài tiện ích "Get cookies.txt LOCALLY" trên trình duyệt Chrome/Edge &rarr; Xuất file cookies và lưu tên thành <code>cookies.txt</code> đặt ngay tại thư mục KOG Studio &rarr; Công cụ sẽ tự động nhận diện cookies để tải mà không bị chặn.</p>
+            </div>
+
+            <div class="callout callout-warning">
+                <div class="callout-title">⚠️ Sự cố 2: Video Facebook báo link hết hạn (Signature Expired)</div>
+                <p><strong>Nguyên nhân:</strong> Link video CDN của Facebook Ads Library thường có thời gian hết hạn trong 12 - 24 giờ.</p>
+                <p><strong>Cách khắc phục:</strong> Chạy lại F12 Script trên Facebook Ads Library để bóc tách luồng link CDN mới nhất và tiến hành tải ngay.</p>
+            </div>
+
+            <div class="callout callout-warning">
+                <div class="callout-title">⚠️ Sự cố 3: Lỗi font chữ hoặc ký tự tiếng Việt lạ trên cửa sổ CMD</div>
+                <p><strong>Cách khắc phục:</strong> File <code>KOG Studio Windows.bat</code> đã tích hợp sẵn lệnh nạp bảng mã UTF-8 (<code>chcp 65001</code>). Nếu vẫn hiển thị sai font, nhấp chuột phải vào thanh tiêu đề CMD &rarr; Chọn <code>Properties</code> &rarr; Chuyển Font chữ sang <code>Consolas</code> hoặc <code>Lucida Console</code>.</p>
+            </div>
+
+            <div class="callout callout-warning">
+                <div class="callout-title">⚠️ Sự cố 4: macOS hiển thị thông báo "Permission denied" khi mở file .command</div>
+                <p><strong>Cách khắc phục:</strong> Mở Terminal trên macOS, gõ lệnh: <code>chmod +x "đường_dẫn_tới_file/KOG Studio MacOS.command"</code> rồi ấn Enter là có thể nhấp đúp chạy bình thường.</p>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2026 KOG Studio Internal Ecosystem. Tài liệu phân phối nội bộ - Tuyệt đối không sao chép hoặc chia sẻ ra ngoài.</p>
+        </footer>
+    </main>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -4,7 +4,7 @@ Hệ sinh thái công cụ tổng hợp tự động hóa, tải video đa nền
 
 ---
 
-## 🌟 3 Trụ Cột Tính Năng Chính
+## 🌟 4 Trụ Cột Tính Năng Chính
 
 ### 1. 📜 KOG Scripts (Công Cụ Tiện Ích & Tự Động Hóa Browser)
 ![KOG Scripts Preview](docs/screenshots/tab1_scripts.png)
@@ -43,7 +43,16 @@ Hệ sinh thái công cụ tổng hợp tự động hóa, tải video đa nền
 * **Phân loại ngôn ngữ (Whisper AI):** Tự động nhận diện ngôn ngữ nói và gom video theo thư mục.
 * **Cắt gọt Video (Trim):** Cắt bỏ đoạn đầu và đoạn đuôi theo giây.
 * **Smart Stream Deduplicator:** Quét băm riêng luồng Video và Audio để lọc trùng mà không xóa nhầm bản lồng tiếng đa ngôn ngữ.
-* **Dọn dẹp & Lưu trữ (Archive):** 1-Click dọn dẹp và lưu trữ dự án theo ngày giờ.
+* **Dọn dẹp & Lưu trữ (Archive):** 1-Click dọn dẹp và lưu trữ dự án theo ngày giờ, hoặc dọn sạch toàn bộ subfolder.
+
+---
+
+### 4. 🤖 KOG AI Assistant (Trợ Lý Trí Tuệ Nhân Tạo Chuyên Nghiệp)
+
+* **Tương tự KOG APK Tester Studio:** Tích hợp sẵn mô hình KOG Marketer Brain v2.0 hoạt động 100% miễn phí, offline, phản hồi tức thì và không cần token.
+* **Tùy chọn kết nối Google Gemini Live:** Hỗ trợ cấu hình Google Gemini API Key để trò chuyện trực tiếp với Gemini 1.5 Flash.
+* **Chuyên sâu kỹ thuật Marketing & Media:** Nắm vững chuẩn TikTok Ads (bitrate >= 516 kbps, 1080x1920 9:16), chuẩn nén Mintegral (< 3 MB), hướng dẫn sử dụng 9 script F12, mẹo viết kịch bản Hook 3s đầu và xử lý sự cố FFmpeg.
+* **Giao diện kép tiện ích:** Truy cập trực tiếp qua Tab [4] trên Web App hoặc mở cửa sổ trượt nhanh (Slide-over Drawer) bằng nút tròn nổi bất cứ khi nào.
 
 ---
 

@@ -94,7 +94,9 @@ cd ~/Downloads && unzip -o KOG_Studio_macOS.zip && chmod +x KOG_Studio && xattr 
 
 1. Tải trực tiếp file: **[KOG_Studio.exe](https://github.com/KOG-KH/KOG-HungTK-Studio-Releases/releases/latest/download/KOG_Studio.exe)** *(hoặc bản zip [KOG_Studio_Windows_x64.zip](https://github.com/KOG-KH/KOG-HungTK-Studio-Releases/releases/latest/download/KOG_Studio_Windows_x64.zip))*.
 2. Nhấp đúp chuột vào file **`KOG_Studio.exe`** để khởi động ngay.
-3. Trình duyệt web sẽ tự động mở giao diện điều khiển tại: `http://127.0.0.1:8000`.
+3. Trình duyệt web sẽ tự động mở giao diện điều khiển tại: http://127.0.0.1:8000.
+   * **Chế độ No-Console:** Ứng dụng chạy hoàn toàn ngầm sạch sẽ, **tuyệt đối không hiển thị cửa sổ CMD đen** hay icon thừa trên thanh Taskbar.
+   * **Cách tắt app an toàn:** Khi dùng xong, chỉ cần click nút **🔴 Tắt App** trên Header của Web App để tự động đóng tiến trình và giải phóng Port 8000 an toàn.
 
 ---
 

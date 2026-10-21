@@ -11,7 +11,7 @@ Hệ sinh thái công cụ tổng hợp tự động hóa, tải video đa nền
 
 * **Gom MP4:** Tự động quét và gom toàn bộ file video MP4 từ mọi thư mục con ra ngoài.
 * **Lấy tên file:** Trích xuất toàn bộ danh sách tên file trong thư mục ra Clipboard hoặc file txt.
-* **Đổi tên hàng loạt:** Đánh số thứ tự, xóa ký tự thừa, chuẩn hóa định dạng tên file đồng loạt.
+* **Đổi tên hàng loạt:** Đánh số thứ tự với tùy chọn custom định dạng số (`1, 2, 3...`, `01, 02...`, `001, 002...`, `0001, 0002...`), xóa ký tự thừa, thêm tiền tố/hậu tố, chuẩn hóa định dạng tên file đồng loạt.
 * **Publish YouTube:** Tạo danh sách liên kết publish bản nháp YouTube tự động.
 * **Lọc file trùng lặp cơ bản:** Quét dọn các file trùng lặp trên ổ đĩa.
 * **Kho Snippet trực tuyến:** Tự động nạp các script crawl Facebook Ads Library, TikTok, HeyGen, Unity, SocialPeta trực tiếp vào RAM và Clipboard (F12 Console).
@@ -25,7 +25,12 @@ Hệ sinh thái công cụ tổng hợp tự động hóa, tải video đa nền
 * **Bóc tách luồng CDN trực tiếp:** Kéo video từ `fbcdn.net` và SocialPeta cực nhanh qua stream I/O không qua render.
 * **Chống chặn IP (Anti-Ban):** Tự động nghỉ ngẫu nhiên 3–5 giây giữa các lượt tải để chống lỗi Rate Limit 429.
 * **Safety Net Protection:** Tự động thêm mã hậu tố ngẫu nhiên để chống ghi đè file trùng tên.
-* **Tải Toàn Bộ Kênh (Bulk Channel):** Quét toàn bộ hoặc số lượng chỉ định video từ kênh TikTok / YouTube kèm cơ chế giả lập Smart TV / Mobile Web Client (`player_client=tv,mweb`) và hỗ trợ Cookies. Hỗ trợ tùy chọn **Tự động đặt tên theo Tiền tố (Prefix) & tự đánh số thứ tự** (`Video 01.mp4`, `Video 02.mp4`...) hoặc giữ nguyên tên video gốc.
+* **Tải Toàn Bộ Kênh (Bulk Channel):** Quét toàn bộ hoặc số lượng chỉ định video từ kênh TikTok / YouTube và toàn bộ chiến dịch Facebook Ads Library (hỗ trợ link tìm kiếm Ads Library, bóc tách hàng loạt video từ thư viện quảng cáo). Tích hợp cơ chế giả lập Smart TV / Mobile Web Client (`player_client=tv,mweb`) và hỗ trợ Cookies. Hỗ trợ tùy chọn **Tự động đặt tên theo Tiền tố (Prefix) & tự đánh số thứ tự** (`Video 01.mp4`, `Video 02.mp4`...) hoặc giữ nguyên tên video gốc.
+* **Chuỗi Hậu Kỳ Tự Động (Post-Download Pipeline):** Tích hợp chuỗi xử lý tự động ngay khi tải video về:
+  - ✨ **[Mặc định BẬT] Tự động Enhance:** Quét độ phân giải video, nếu $\ge 1080\times 1920$ &rarr; Skip; nếu $< 1080\times 1920$ &rarr; tự động tăng nét và khử nhiễu (TikTok Enhance logic).
+  - 📐 **[Tùy chọn] Tự động Resize 9:16 & Xóa file gốc:** Nếu video khác tỉ lệ 9:16 &rarr; tự động chuyển sang 9:16 dọc với nền mờ (Blur Background) và xóa file gốc không phù hợp.
+  - 🌐 **[Tùy chọn] Phân loại video theo Ngôn ngữ:** Tự động nhận diện tiếng (Whisper AI Audio) hoặc chữ màn hình (OCR Text AI) và gom vào subfolder ngôn ngữ tương ứng.
+  - 🛡️ **Tự động Lọc trùng lặp thông minh (Smart Stream Deduplicator):** Bóc tách mã băm luồng MD5, tự động phát hiện và xóa video trùng lặp với kho video đã có trong thư mục trước đó.
 
 ---
 

@@ -38,16 +38,44 @@ echo "[2/4] 📦 Đang giải nén bộ cài đặt..."
 unzip -q -o "$ZIP_FILE" -d "$INSTALL_DIR"
 rm -f "$ZIP_FILE"
 
-# 4. Cấp quyền thực thi và gỡ bỏ kiểm duyệt macOS Gatekeeper (Quarantine)
-echo "[3/4] 🔑 Đang cấp quyền thực thi & vượt bảo mật macOS Gatekeeper..."
+# 4. Kiểm tra & tự động tích hợp FFmpeg độc lập (Zero-Dependency - Không cần Homebrew)
+BIN_DIR="$INSTALL_DIR/bin"
+mkdir -p "$BIN_DIR"
+if ! command -v ffmpeg &> /dev/null && [ ! -f "$INSTALL_DIR/ffmpeg" ] && [ ! -f "$BIN_DIR/ffmpeg" ] && [ ! -f "/opt/homebrew/bin/ffmpeg" ] && [ ! -f "/usr/local/bin/ffmpeg" ]; then
+    echo "[3/5] 🎥 Đang thiết lập FFmpeg độc lập cho macOS (Không cần cài Homebrew)..."
+    ARCH=$(uname -m)
+    if [ "$ARCH" = "arm64" ]; then
+        FFMPEG_URL="https://github.com/Tyrrrz/FFmpegBin/releases/download/9.0.2/ffmpeg-osx-arm64.zip"
+    else
+        FFMPEG_URL="https://github.com/Tyrrrz/FFmpegBin/releases/download/9.0.2/ffmpeg-osx-x64.zip"
+    fi
+    FFMPEG_ZIP="$INSTALL_DIR/ffmpeg_temp.zip"
+    if curl -fSL --progress-bar "$FFMPEG_URL" -o "$FFMPEG_ZIP"; then
+        unzip -q -o "$FFMPEG_ZIP" -d "$BIN_DIR" 2>/dev/null || unzip -q -o "$FFMPEG_ZIP" -d "$INSTALL_DIR" 2>/dev/null
+        rm -f "$FFMPEG_ZIP"
+        chmod +x "$BIN_DIR/ffmpeg" "$BIN_DIR/ffprobe" 2>/dev/null || true
+        chmod +x "$INSTALL_DIR/ffmpeg" "$INSTALL_DIR/ffprobe" 2>/dev/null || true
+        xattr -cr "$BIN_DIR" 2>/dev/null || true
+        echo "      ✅ Đã tích hợp FFmpeg & FFprobe độc lập thành công!"
+    else
+        echo "      ⚠️ Không thể tải tự động FFmpeg. Bạn có thể cài qua: brew install ffmpeg"
+        rm -f "$FFMPEG_ZIP"
+    fi
+else
+    echo "[3/5] 🎥 FFmpeg đã sẵn sàng trên hệ thống."
+fi
+
+# 5. Cấp quyền thực thi và gỡ bỏ kiểm duyệt macOS Gatekeeper (Quarantine)
+echo "[4/5] 🔑 Đang cấp quyền thực thi & vượt bảo mật macOS Gatekeeper..."
 chmod +x "$INSTALL_DIR/KOG_Studio"
 xattr -cr "$INSTALL_DIR/KOG_Studio" 2>/dev/null || true
 
-# 5. Tạo biểu tượng khởi động nhanh ngoài Desktop
-echo "[4/4] 🖥️  Đang tạo shortcut 'KOG HungTK Studio' ngoài Desktop..."
+# 6. Tạo biểu tượng khởi động nhanh ngoài Desktop
+echo "[5/5] 🖥️  Đang tạo shortcut 'KOG HungTK Studio' ngoài Desktop..."
 if [ -d "$DESKTOP_DIR" ]; then
 cat << 'EOF' > "$DESKTOP_LAUNCHER"
 #!/usr/bin/env bash
+export PATH="$HOME/KOG_HungTK_Studio/bin:$HOME/KOG_HungTK_Studio:/opt/homebrew/bin:/usr/local/bin:$PATH"
 cd "$HOME/KOG_HungTK_Studio"
 ./KOG_Studio
 EOF

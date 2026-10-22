@@ -1,94 +1,93 @@
-# 🚀 KOG HungTK Studio All-in-One
+# 🚀 KOG HungTK Studio Pro
 
-Hệ sinh thái công cụ tổng hợp tự động hóa, tải video đa nền tảng và dựng video chuyên nghiệp **KOG HungTK Studio**, hỗ trợ toàn diện cả **Windows** và **Apple macOS**.
+Bộ công cụ All-in-One tự động hóa **Tải video đa nền tảng**, **Sản xuất video hàng loạt** và **Spying Ads** chuyên nghiệp dành riêng cho **Marketer, Media Buyer & Content Creator**, hỗ trợ mượt mà trên cả **Windows** và **Apple macOS**.
+
+> ⚡ **Tự động hóa 90% công việc thủ công:** Spying & tải trọn bộ video quảng cáo của đối thủ, tự động tráo 3s Hook đầu video để A/B testing camp, chuẩn hóa video tỷ lệ 9:16 nét căng sẵn sàng chạy Ads TikTok / Reels / Shorts chỉ với vài cú click chuột.
 
 ---
 
 ## 🌟 4 Trụ Cột Tính Năng Chính
 
-### 1. 📜 KOG Scripts (Công Cụ Tiện Ích & Tự Động Hóa Browser)
+### 1. 📜 KOG Scripts (Tiện Ích & Tự Động Hóa Browser Nhanh)
 ![KOG Scripts Preview](docs/screenshots/tab1_scripts.png)
 
-* **Gom MP4:** Tự động quét và gom toàn bộ file video MP4 từ mọi thư mục con ra ngoài.
-* **Lấy tên file:** Trích xuất toàn bộ danh sách tên file trong thư mục ra Clipboard hoặc file txt.
-* **Đổi tên hàng loạt:** Đánh số thứ tự với tùy chọn custom định dạng số (`1, 2, 3...`, `01, 02...`, `001, 002...`, `0001, 0002...`), xóa ký tự thừa, thêm tiền tố/hậu tố, chuẩn hóa định dạng tên file đồng loạt.
-* **Publish YouTube:** Tạo danh sách liên kết publish bản nháp YouTube tự động.
-* **Lọc file trùng lặp cơ bản:** Quét dọn các file trùng lặp trên ổ đĩa.
-* **Kho Snippet trực tuyến:** Tự động nạp các script crawl Facebook Ads Library, TikTok, HeyGen, Unity, SocialPeta trực tiếp vào RAM và Clipboard (F12 Console).
+* **Gom video 1-Click:** Tự động lùng sục và gom toàn bộ file video MP4 nằm rải rác ở các thư mục con ra một nơi duy nhất.
+* **Xuất danh sách file:** Trích xuất nhanh toàn bộ tên file trong thư mục ra Clipboard hoặc file txt để tiện quản lý và lập kế hoạch nội dung.
+* **Đổi tên hàng loạt:** Tự động đánh số thứ tự chuyên nghiệp (`Video 01`, `Video 02`... hoặc `001, 002...`), xóa ký tự rác, thêm tiền tố/hậu tố, chuẩn hóa tên file đồng loạt.
+* **Publish YouTube:** Tự động tạo danh sách liên kết đăng bản nháp YouTube siêu tốc.
+* **Dọn dẹp file trùng:** Quét dọn các file trùng lặp giúp giải phóng không gian ổ đĩa.
+* **Kho Snippet Spying trực tuyến:** Tự động nạp các script crawl data từ Facebook Ads Library, TikTok, HeyGen, Unity, SocialPeta trực tiếp vào RAM và Clipboard (F12 Console).
 
 ---
 
-### 2. 📥 Video Downloader (Tải Video Đa Nền Tảng & Toàn Bộ Kênh)
+### 2. 📥 Video Downloader (Tải Video Sạch & Spying Ads Toàn Bộ Kênh)
 ![Video Downloader Preview](docs/screenshots/tab2_downloader.png)
 
-* **Tải Video Đa Nền Tảng (All-in-One):** Hỗ trợ TikTok, Facebook Ads Library, YouTube (Shorts & Long-form), Instagram, SocialPeta.
-* **Bóc tách luồng CDN trực tiếp:** Kéo video từ `fbcdn.net` và SocialPeta cực nhanh qua stream I/O không qua render.
-* **Chống chặn IP (Anti-Ban):** Tự động nghỉ ngẫu nhiên 3–5 giây giữa các lượt tải để chống lỗi Rate Limit 429.
-* **Safety Net Protection:** Tự động thêm mã hậu tố ngẫu nhiên để chống ghi đè file trùng tên.
-* **Tải Toàn Bộ Kênh (Bulk Channel):** Quét toàn bộ hoặc số lượng chỉ định video từ kênh TikTok / YouTube và toàn bộ chiến dịch Facebook Ads Library (hỗ trợ link tìm kiếm Ads Library, bóc tách hàng loạt video từ thư viện quảng cáo). Tích hợp cơ chế giả lập Smart TV / Mobile Web Client (`player_client=tv,mweb`) và hỗ trợ Cookies. Hỗ trợ tùy chọn **Tự động đặt tên theo Tiền tố (Prefix) & tự đánh số thứ tự** (`Video 01.mp4`, `Video 02.mp4`...) hoặc giữ nguyên tên video gốc.
-* **Chuỗi Hậu Kỳ Tự Động (Post-Download Pipeline):** Tích hợp chuỗi xử lý tự động ngay khi tải video về:
-  - ✨ **[Mặc định BẬT] Tự động Enhance:** Quét độ phân giải video, nếu $\ge 1080\times 1920$ &rarr; Skip; nếu $< 1080\times 1920$ &rarr; tự động tăng nét và khử nhiễu (TikTok Enhance logic).
-  - 📐 **[Tùy chọn] Tự động Resize 9:16 & Xóa file gốc:** Nếu video khác tỉ lệ 9:16 &rarr; tự động chuyển sang 9:16 dọc với nền mờ (Blur Background) và xóa file gốc không phù hợp.
-  - 🌐 **[Tùy chọn] Phân loại video theo Ngôn ngữ:** Tự động nhận diện tiếng (Whisper AI Audio) hoặc chữ màn hình (OCR Text AI) và gom vào subfolder ngôn ngữ tương ứng.
-  - 🛡️ **Tự động Lọc trùng lặp thông minh (Smart Stream Deduplicator):** Bóc tách mã băm luồng MD5, tự động phát hiện và xóa video trùng lặp với kho video đã có trong thư mục trước đó.
+* **Tải Video Đa Nền Tảng (All-in-One):** Tải video không logo/watermark từ TikTok, Facebook Ads Library, YouTube (Shorts & Video dài), Instagram, SocialPeta.
+* **Kéo Video Siêu Tốc:** Bóc tách dữ liệu gốc từ Facebook và SocialPeta cực nhanh, tải trực tiếp không cần render lại.
+* **Tải Thông Minh & An Toàn:** Tự động căn chỉnh thời gian nghỉ giữa các lượt tải để chống bị chặn tải (Rate Limit), tự động thêm mã nhận diện tránh ghi đè file cũ.
+* **Tải Trọn Bộ Kênh & Thư Viện Quảng Cáo (Bulk Channel):** Quét tải toàn bộ hoặc số lượng chỉ định video từ kênh TikTok, kênh YouTube hoặc toàn bộ chiến dịch từ Facebook Ads Library (hỗ trợ bóc tách hàng loạt video từ link tìm kiếm Ads Library). Tự động đặt tên theo tiền tố (`Video 01.mp4`, `Video 02.mp4`...) hoặc giữ tên gốc tùy chọn.
+* **Chuỗi Xử Lý Tự Động Ngay Khi Tải Về (Auto Post-Processing):**
+  - ✨ **[Mặc định BẬT] Tự động Tăng Nét (Enhance):** Tự động phát hiện video mờ ($< 1080\times 1920$) và áp dụng bộ lọc nâng nét, khử vỡ hình chuẩn TikTok.
+  - 📐 **[Tùy chọn] Tự động Chuyển 9:16 Khung Dọc:** Video ngang/vuông sẽ tự động được đưa về tỷ lệ 9:16 dọc với nền mờ (Blur Background) sang chảnh, tự động xóa file gốc không phù hợp.
+  - 🌐 **[Tùy chọn] Phân loại video theo Ngôn ngữ (AI):** Tự động nhận diện tiếng nói (Whisper AI) hoặc chữ trên màn hình (OCR AI) và gom video vào các thư mục ngôn ngữ tương ứng (Anh, Việt, Thái, v.v.).
+  - 🛡️ **Tự động Lọc trùng lặp thông minh:** So khớp dữ liệu luồng video, tự động phát hiện và loại bỏ các video đã có trong kho lưu trữ.
 
 ---
 
-### 3. 🎬 Video Editor Studio (Biên Tập & Dựng Video Chuyên Nghiệp 12-in-1)
+### 3. 🎬 Video Editor Studio (Xưởng Biên Tập & Nhân Bản Video 12-in-1)
 ![Video Editor Studio Preview](docs/screenshots/tab3_editor.png)
 
-* **Chuyển đổi Fast Copy:** Đổi đuôi MOV, WebM, MKV sang MP4 chuẩn cực nhanh không mất chất lượng.
-* **Tối ưu 9:16 TikTok / Reels:** Đổi tỉ lệ khung hình kèm nền mờ nghệ thuật (Blur Background).
-* **Nén Mintegral & Tăng nét TikTok:** Tối ưu dung lượng 50–70% và thuật toán Unsharp Denoise.
-* **Chuẩn hóa TikTok Ads Policy:** Tự động điều chỉnh độ dài, upscale bitrate $\ge 516\text{ kbps}$, scale Lanczos tối thiểu $1080\times 1920$.
-* **Ghép Intro, Outro, Khung viền & Logo:** Chèn logo, chèn frame viền trong suốt và nối video.
-* **Tráo Visual Hook (A/B Testing):** Ghép 3s hook đầu video và giữ nguyên luồng audio nền.
-* **Trích xuất Frame ảnh độ nét cao:** Chụp ảnh Thumbnail sắc nét hàng loạt hoặc thủ công.
-* **Xử lý Audio:** Trích xuất MP3, thay nhạc nền, hòa trộn âm thanh.
-* **Phân loại ngôn ngữ (Whisper AI):** Tự động nhận diện ngôn ngữ nói và gom video theo thư mục.
-* **Cắt gọt Video (Trim):** Cắt bỏ đoạn đầu và đoạn đuôi theo giây.
-* **Smart Stream Deduplicator:** Quét băm riêng luồng Video và Audio để lọc trùng mà không xóa nhầm bản lồng tiếng đa ngôn ngữ.
-* **Dọn dẹp & Lưu trữ (Archive):** 1-Click dọn dẹp và lưu trữ dự án theo ngày giờ, hoặc dọn sạch toàn bộ subfolder.
+* **Tráo Visual Hook 3 giây đầu (A/B Testing đỉnh cao):** Tự động ghép các đoạn mở đầu 3s (Hook) hấp dẫn vào video gốc trong khi âm thanh nền vẫn chạy liền mạch — giải pháp hoàn hảo để nhân bản mẫu quảng cáo test CTR.
+* **Chuẩn hóa đạt chuẩn TikTok Ads Policy:** Tự động điều chỉnh độ dài, upscale bitrate $\ge 516\text{ kbps}$, scale nét tối thiểu $1080\times 1920$ giúp video được duyệt nhanh và không bị bóp reach.
+* **Tối ưu chuẩn 9:16 TikTok / Reels / Shorts:** Chuyển đổi mọi tỷ lệ video sang khung dọc 9:16 kèm nền mờ nghệ thuật.
+* **Siêu nén video cho Ads Network (Mintegral / Unity):** Tối ưu giảm dung lượng 50–70% nhưng vẫn giữ độ nét sắc sảo, tải cực nhanh trên các mạng quảng cáo.
+* **Đổi đuôi siêu tốc (Fast Copy):** Chuyển đuôi MOV, WebM, MKV sang MP4 chuẩn chỉ trong 1 giây, hoàn toàn không giảm chất lượng.
+* **Đóng khung, Chèn Logo & Ghép Intro/Outro:** Gắn logo thương hiệu, chèn khung viền trong suốt và nối đầu/đuôi video tự động hàng loạt.
+* **Trích xuất ảnh Thumbnail nét cao:** Chụp các khung hình đẹp nhất làm ảnh bìa hàng loạt hoặc thủ công.
+* **Biên tập Âm thanh (Audio):** Tách nhạc MP3, thay nhạc nền, phối âm thanh dễ dàng.
+* **Phân loại ngôn ngữ tự động (Whisper AI):** Nhận diện giọng nói và phân loại video vào thư mục từng quốc gia.
+* **Cắt gọt Video (Trim):** Cắt bỏ đoạn đầu và đoạn đuôi theo từng giây chuẩn xác.
+* **Lọc trùng lặp thông minh:** Quét tách biệt luồng hình và tiếng để lọc video trùng mà không xóa nhầm các bản lồng tiếng đa ngôn ngữ.
+* **Dọn dẹp & Đóng gói lưu trữ (Archive):** 1-Click dọn dẹp và lưu trữ dự án ngăn nắp theo ngày giờ.
 
 ---
 
-### 4. 🤖 KOG AI Assistant (Trợ Lý Trí Tuệ Nhân Tạo Chuyên Nghiệp)
-
-* **Tương tự KOG APK Tester Studio:** Tích hợp sẵn mô hình KOG Marketer Brain v2.0 hoạt động 100% miễn phí, offline, phản hồi tức thì và không cần token.
-* **Tùy chọn kết nối Google Gemini Live:** Hỗ trợ cấu hình Google Gemini API Key để trò chuyện trực tiếp với Gemini 1.5 Flash.
-* **Chuyên sâu kỹ thuật Marketing & Media:** Nắm vững chuẩn TikTok Ads (bitrate >= 516 kbps, 1080x1920 9:16), chuẩn nén Mintegral (< 3 MB), hướng dẫn sử dụng 9 script F12, mẹo viết kịch bản Hook 3s đầu và xử lý sự cố FFmpeg.
-* **Giao diện kép tiện ích:** Truy cập trực tiếp qua Tab [4] trên Web App hoặc mở cửa sổ trượt nhanh (Slide-over Drawer) bằng nút tròn nổi bất cứ khi nào.
-
----
-
-## 🖥️ Hướng Dẫn Cài Đặt & Sử Dụng (Standalone - Không Cần Cài Python)
-
-KOG HungTK Studio hiện đã được đóng gói thành các gói phần mềm độc lập siêu nhẹ (~18–20 MB), **bảo mật 100% mã nguồn** và **không cần cài đặt Python hay bất kỳ thư viện môi trường nào**.
+### 4. 🤖 KOG AI Assistant (Trợ Lý AI Dành Riêng Cho Marketer)
+* **KOG Marketer Brain v2.0 tích hợp sẵn:** Hoạt động hoàn toàn miễn phí, offline ngay trên máy, phản hồi tức thì và không tốn chi phí token.
+* **Tùy chọn kết nối Google Gemini Live:** Hỗ trợ kết nối Gemini API để trò chuyện trực tiếp và mở rộng khả năng sáng tạo nội dung.
+* **Am hiểu sâu về Kỹ thuật Marketing & Media:** Nắm rõ chuẩn video TikTok Ads, chuẩn nén mạng Mintegral (< 3 MB), tư vấn ý tưởng kịch bản Hook 3s đầu thu hút khách hàng và mẹo tối ưu chiến dịch.
+* **Giao diện đa nhiệm tiện lợi:** Dễ dàng truy cập qua Tab chuyên dụng hoặc mở cửa sổ trượt nhanh (Slide-over Drawer) bằng nút tròn nổi bất kỳ lúc nào.
 
 ---
 
-### 🍎 Dành Cho Máy Apple macOS (M1/M2/M3/M4 & Intel)
+## 💻 Hướng Dẫn Tải & Mở Ứng Dụng (Độc Lập - Không Cần Cài Python)
+
+KOG HungTK Studio đã được đóng gói thành phần mềm độc lập siêu nhẹ (~18–20 MB), **không cần cài đặt Python hay bất kỳ môi trường kỹ thuật nào**.
+
+---
+
+### 🍏 Dành Cho Máy Apple macOS (M1/M2/M3/M4 & Intel)
 
 #### Cách 1: Cài đặt & Khởi chạy tự động bằng 1 dòng lệnh (Khuyên dùng)
-1. Mở ứng dụng **Terminal** trên máy Mac (Nhấn `Cmd + Space` -> gõ `Terminal` -> ấn `Enter`).
+1. Mở ứng dụng **Terminal** trên Mac (Nhấn `Cmd + Space` -> gõ `Terminal` -> ấn `Enter`).
 2. Copy và Paste **nguyên dòng lệnh bên dưới** vào Terminal rồi nhấn `Enter`:
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/KOG-KH/KOG-HungTK-Studio-Releases/main/install_macos.sh)"
 ```
 
-✨ **Lệnh sẽ tự động thực hiện tất cả:**
+✨ **Lệnh sẽ tự động thực hiện tất cả cho bạn:**
 * Tự động tải bản macOS mới nhất về thư mục riêng `~/KOG_HungTK_Studio`.
-* Tự động giải nén file chương trình.
-* Cấp quyền thực thi (`chmod +x`) và gỡ bỏ kiểm duyệt bảo mật macOS Gatekeeper (`xattr -cr`).
-* **Tự động tạo icon `KOG HungTK Studio.command` ngay trên màn hình Desktop**.
-* Khởi chạy Web App và tự mở trình duyệt web `http://127.0.0.1:8000`.
+* Tự động giải nén và cấp quyền chạy.
+* **Tự động tạo biểu tượng `KOG HungTK Studio.command` ngay trên màn hình Desktop**.
+* Khởi chạy ứng dụng và tự mở trình duyệt web giao diện làm việc tại `http://127.0.0.1:8000`.
 
 > 💡 **Khởi động những lần tiếp theo:** Chỉ cần ra màn hình Desktop và nhấp đúp vào icon **`KOG HungTK Studio.command`** là xong!
 
 #### Cách 2: Tải file thủ công từ Releases
 1. Tải file **[KOG_Studio_macOS.zip](https://github.com/KOG-KH/KOG-HungTK-Studio-Releases/releases/latest/download/KOG_Studio_macOS.zip)** về thư mục `Downloads`.
-2. Mở **Terminal** và dán lệnh sau để tự động giải nén, cấp quyền và chạy:
+2. Mở **Terminal** và dán lệnh sau để giải nén và khởi chạy:
 ```bash
 cd ~/Downloads && unzip -o KOG_Studio_macOS.zip && chmod +x KOG_Studio && xattr -cr KOG_Studio && ./KOG_Studio
 ```
@@ -97,24 +96,23 @@ cd ~/Downloads && unzip -o KOG_Studio_macOS.zip && chmod +x KOG_Studio && xattr 
 
 ### 🪟 Dành Cho Máy Windows (Windows 10, 11 64-bit)
 
-1. Tải trực tiếp file: **[KOG_Studio.exe](https://github.com/KOG-KH/KOG-HungTK-Studio-Releases/releases/latest/download/KOG_Studio.exe)** *(hoặc bản zip [KOG_Studio_Windows_x64.zip](https://github.com/KOG-KH/KOG-HungTK-Studio-Releases/releases/latest/download/KOG_Studio_Windows_x64.zip))*.
-2. Nhấp đúp chuột vào file **`KOG_Studio.exe`** để khởi động ngay.
+1. Tải trực tiếp file: **[KOG_Studio.exe](https://github.com/KOG-KH/KOG-HungTK-Studio-Releases/releases/latest/download/KOG_Studio.exe)** *(hoặc tải bản zip [KOG_Studio_Windows_x64.zip](https://github.com/KOG-KH/KOG-HungTK-Studio-Releases/releases/latest/download/KOG_Studio_Windows_x64.zip))*.
+2. Nhấp đúp chuột vào file **`KOG_Studio.exe`** để mở ứng dụng ngay lập tức.
 3. Trình duyệt web sẽ tự động mở giao diện điều khiển tại: http://127.0.0.1:8000.
-   * **Chế độ No-Console:** Ứng dụng chạy hoàn toàn ngầm sạch sẽ, **tuyệt đối không hiển thị cửa sổ CMD đen** hay icon thừa trên thanh Taskbar.
-   * **Cách tắt app an toàn:** Khi dùng xong, chỉ cần click nút **🔴 Tắt App** trên Header của Web App để tự động đóng tiến trình và giải phóng Port 8000 an toàn.
+   * **Giao diện sạch sẽ (No-Console):** Ứng dụng chạy ngầm hoàn toàn, **không hiện cửa sổ dòng lệnh đen**, không gây vướng víu.
+   * **Tắt ứng dụng an toàn:** Khi dùng xong, bạn chỉ cần bấm nút **🔴 Tắt App** ở góc trên thanh điều khiển của Web App.
 
 ---
 
-## 🔒 Bản Quyền & Xác Thực Thiết Bị (Device ID)
-* Toàn bộ mã nguồn Python được biên dịch đóng gói độc lập, không lộ code ra ngoài.
-* Tích hợp Cổng bảo mật Google Apps Script Gateway (Zero-Token Client Architecture).
-* Xác thực theo Hardware UUID (Device ID) phần cứng của người dùng trên Google Sheet của Admin.
+## 🔑 Bản Quyền & Kích Hoạt Thiết Bị (Device ID)
 
-> 📢 **CẤP QUYỀN CHO THIẾT BỊ MỚI:**
+Để kích hoạt tài khoản sử dụng trên máy của bạn:
+
+> 📢 **CẤP QUYỀN SỬ DỤNG CHO THIẾT BỊ MỚI:**
 > Người dùng vui lòng liên hệ **HungTK** qua **Discord**, cung cấp:
-> 1. **User Name** (Tên người dùng của bạn)
-> 2. **Device ID** (Mã phần cứng UUID hiển thị trên ứng dụng hoặc lệnh kiểm tra)
+> 1. **User Name** (Tên của bạn)
+> 2. **Device ID** (Mã phần cứng máy tính hiển thị ngay trên màn hình ứng dụng khi bạn mở lên)
 > 
-> *Cách lấy nhanh Device ID:*
+> *Cách kiểm tra nhanh Device ID thủ công (nếu cần):*
 > - **Trên macOS:** Mở Terminal gõ: `ioreg -rd1 -c IOPlatformExpertDevice | grep IOPlatformUUID`
 > - **Trên Windows:** Mở PowerShell gõ: `(Get-CimInstance Win32_ComputerSystemProduct).UUID`

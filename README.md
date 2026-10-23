@@ -6,14 +6,16 @@ Bộ công cụ All-in-One tự động hóa **Tải video đa nền tảng**, *
 
 ---
 
-## 🌟 4 Trụ Cột Tính Năng Chính
+## 🌟 4 Trụ Cột Tính Năng Chính Trên Dashboard
 
 ### 1. 📜 KOG Scripts (Tiện Ích & Tự Động Hóa Browser Nhanh)
 ![KOG Scripts Preview](docs/screenshots/tab1_scripts.png)
 
 * **Gom video 1-Click:** Tự động lùng sục và gom toàn bộ file video MP4 nằm rải rác ở các thư mục con ra một nơi duy nhất.
-* **Xuất danh sách file:** Trích xuất nhanh toàn bộ tên file trong thư mục ra Clipboard hoặc file txt để tiện quản lý và lập kế hoạch nội dung.
-* **Đổi tên hàng loạt:** Tự động đánh số thứ tự chuyên nghiệp (`Video 01`, `Video 02`... hoặc `001, 002...`), xóa ký tự rác, thêm tiền tố/hậu tố, chuẩn hóa tên file đồng loạt.
+* **Đổi tên hàng loạt linh hoạt (Custom Numbering):**
+  - Tự chọn định dạng số thứ tự: `1, 2, 3...`, `01, 02, 03...`, hoặc `001, 002, 003...`.
+  - Tùy biến thêm tiền tố/hậu tố, xóa ký tự rác, chuẩn hóa tên file đồng loạt.
+* **Xuất danh sách file:** Trích xuất nhanh toàn bộ tên file trong thư mục ra Clipboard hoặc file `.txt` để tiện quản lý và lập kế hoạch nội dung.
 * **Publish YouTube:** Tự động tạo danh sách liên kết đăng bản nháp YouTube siêu tốc.
 * **Dọn dẹp file trùng:** Quét dọn các file trùng lặp giúp giải phóng không gian ổ đĩa.
 * **Kho Snippet Spying trực tuyến:** Tự động nạp các script crawl data từ Facebook Ads Library, TikTok, HeyGen, Unity, SocialPeta trực tiếp vào RAM và Clipboard (F12 Console).
@@ -25,9 +27,12 @@ Bộ công cụ All-in-One tự động hóa **Tải video đa nền tảng**, *
 
 * **Tải Video Đa Nền Tảng (All-in-One):** Tải video không logo/watermark từ TikTok, Facebook Ads Library, YouTube (Shorts & Video dài), Instagram, SocialPeta.
 * **Kéo Video Siêu Tốc:** Bóc tách dữ liệu gốc từ Facebook và SocialPeta cực nhanh, tải trực tiếp không cần render lại.
-* **Tải Thông Minh & An Toàn:** Tự động căn chỉnh thời gian nghỉ giữa các lượt tải để chống bị chặn tải (Rate Limit), tự động thêm mã nhận diện tránh ghi đè file cũ.
-* **Tải Trọn Bộ Kênh & Thư Viện Quảng Cáo (Bulk Channel):** Quét tải toàn bộ hoặc số lượng chỉ định video từ kênh TikTok, kênh YouTube hoặc toàn bộ chiến dịch từ Facebook Ads Library (hỗ trợ bóc tách hàng loạt video từ link tìm kiếm Ads Library). Tự động đặt tên theo tiền tố (`Video 01.mp4`, `Video 02.mp4`...) hoặc giữ tên gốc tùy chọn.
-* **Chuỗi Xử Lý Tự Động Ngay Khi Tải Về (Auto Post-Processing):**
+* **Tải Trọn Bộ Facebook Ads Library:** Dán link tìm kiếm từ Facebook Ads Library để bóc tách và tải hàng loạt toàn bộ video quảng cáo của đối thủ hoặc ngành hàng.
+* **Tải Trọn Bộ Kênh (Bulk Channel):**
+  - Quét tải toàn bộ hoặc số lượng chỉ định video từ kênh TikTok, kênh YouTube.
+  - Hỗ trợ tùy chọn **Tự động đặt tên theo tiền tố** (`Video 01.mp4`, `Video 02.mp4`...) hoặc giữ nguyên tên gốc.
+* **Tải Thông Minh & An Toàn (Anti-Rate Limit):** Tự động căn chỉnh thời gian nghỉ giữa các lượt tải để chống bị chặn IP, tự động thêm mã nhận diện tránh ghi đè file cũ.
+* **Chuỗi Xử Lý Tự Động Ngay Khi Tải Về (Post-Download Pipeline):**
   - ✨ **[Mặc định BẬT] Tự động Tăng Nét (Enhance):** Tự động phát hiện video mờ ($< 1080\times 1920$) và áp dụng bộ lọc nâng nét, khử vỡ hình chuẩn TikTok.
   - 📐 **[Tùy chọn] Tự động Chuyển 9:16 Khung Dọc:** Video ngang/vuông sẽ tự động được đưa về tỷ lệ 9:16 dọc với nền mờ (Blur Background) sang chảnh, tự động xóa file gốc không phù hợp.
   - 🌐 **[Tùy chọn] Phân loại video theo Ngôn ngữ (AI):** Tự động nhận diện tiếng nói (Whisper AI) hoặc chữ trên màn hình (OCR AI) và gom video vào các thư mục ngôn ngữ tương ứng (Anh, Việt, Thái, v.v.).
@@ -38,18 +43,18 @@ Bộ công cụ All-in-One tự động hóa **Tải video đa nền tảng**, *
 ### 3. 🎬 Video Editor Studio (Xưởng Biên Tập & Nhân Bản Video 12-in-1)
 ![Video Editor Studio Preview](docs/screenshots/tab3_editor.png)
 
-* **Tráo Visual Hook 3 giây đầu (A/B Testing đỉnh cao):** Tự động ghép các đoạn mở đầu 3s (Hook) hấp dẫn vào video gốc trong khi âm thanh nền vẫn chạy liền mạch — giải pháp hoàn hảo để nhân bản mẫu quảng cáo test CTR.
-* **Chuẩn hóa đạt chuẩn TikTok Ads Policy:** Tự động điều chỉnh độ dài, upscale bitrate $\ge 516\text{ kbps}$, scale nét tối thiểu $1080\times 1920$ giúp video được duyệt nhanh và không bị bóp reach.
-* **Tối ưu chuẩn 9:16 TikTok / Reels / Shorts:** Chuyển đổi mọi tỷ lệ video sang khung dọc 9:16 kèm nền mờ nghệ thuật.
-* **Siêu nén video cho Ads Network (Mintegral / Unity):** Tối ưu giảm dung lượng 50–70% nhưng vẫn giữ độ nét sắc sảo, tải cực nhanh trên các mạng quảng cáo.
-* **Đổi đuôi siêu tốc (Fast Copy):** Chuyển đuôi MOV, WebM, MKV sang MP4 chuẩn chỉ trong 1 giây, hoàn toàn không giảm chất lượng.
-* **Đóng khung, Chèn Logo & Ghép Intro/Outro:** Gắn logo thương hiệu, chèn khung viền trong suốt và nối đầu/đuôi video tự động hàng loạt.
-* **Trích xuất ảnh Thumbnail nét cao:** Chụp các khung hình đẹp nhất làm ảnh bìa hàng loạt hoặc thủ công.
-* **Biên tập Âm thanh (Audio):** Tách nhạc MP3, thay nhạc nền, phối âm thanh dễ dàng.
-* **Phân loại ngôn ngữ tự động (Whisper AI):** Nhận diện giọng nói và phân loại video vào thư mục từng quốc gia.
-* **Cắt gọt Video (Trim):** Cắt bỏ đoạn đầu và đoạn đuôi theo từng giây chuẩn xác.
-* **Lọc trùng lặp thông minh:** Quét tách biệt luồng hình và tiếng để lọc video trùng mà không xóa nhầm các bản lồng tiếng đa ngôn ngữ.
-* **Dọn dẹp & Đóng gói lưu trữ (Archive):** 1-Click dọn dẹp và lưu trữ dự án ngăn nắp theo ngày giờ.
+1. **Tráo Visual Hook 3 giây đầu (A/B Testing đỉnh cao):** Tự động ghép các đoạn mở đầu 3s (Hook) hấp dẫn vào video gốc trong khi âm thanh nền vẫn chạy liền mạch — giải pháp hoàn hảo để nhân bản mẫu quảng cáo test CTR.
+2. **Siêu nén video cho Ads Network (Mintegral / Unity):** Tối ưu giảm dung lượng 50–70% nhưng vẫn giữ độ nét sắc sảo, tải cực nhanh trên các mạng quảng cáo (< 3 MB / < 5 MB).
+3. **Chuẩn hóa đạt chuẩn TikTok Ads Policy:** Tự động điều chỉnh độ dài, upscale bitrate $\ge 516\text{ kbps}$, scale nét tối thiểu $1080\times 1920$ giúp video được duyệt nhanh và không bị bóp reach.
+4. **Tối ưu chuẩn 9:16 TikTok / Reels / Shorts:** Chuyển đổi mọi tỷ lệ video (hỗ trợ cả tỷ lệ lạ như `720x900`) sang khung dọc 9:16 kèm nền mờ nghệ thuật; tự động copy video chuẩn vào thư mục thành phẩm.
+5. **Đổi đuôi siêu tốc (Fast Copy):** Chuyển đuôi MOV, WebM, MKV sang MP4 chuẩn chỉ trong 1 giây, hoàn toàn không giảm chất lượng.
+6. **Đóng khung, Chèn Logo & Ghép Intro/Outro:** Gắn logo thương hiệu, chèn khung viền trong suốt và nối đầu/đuôi video tự động hàng loạt.
+7. **Trích xuất ảnh Thumbnail nét cao:** Chụp các khung hình đẹp nhất làm ảnh bìa hàng loạt hoặc thủ công.
+8. **Cắt gọt Video (Trim):** Cắt bỏ đoạn đầu và đoạn đuôi theo từng giây chuẩn xác.
+9. **Biên tập Âm thanh (Audio):** Tách nhạc MP3, thay nhạc nền, phối âm thanh dễ dàng.
+10. **Phân loại ngôn ngữ tự động (Whisper AI):** Nhận diện giọng nói và phân loại video vào thư mục từng quốc gia.
+11. **Lọc trùng lặp thông minh:** Quét tách biệt luồng hình và tiếng để lọc video trùng mà không xóa nhầm các bản lồng tiếng đa ngôn ngữ.
+12. **Dọn dẹp & Đóng gói lưu trữ (Archive):** 1-Click dọn dẹp và lưu trữ dự án ngăn nắp theo thứ tự chữ cái A-Z.
 
 ---
 
@@ -58,6 +63,15 @@ Bộ công cụ All-in-One tự động hóa **Tải video đa nền tảng**, *
 * **Tùy chọn kết nối Google Gemini Live:** Hỗ trợ kết nối Gemini API để trò chuyện trực tiếp và mở rộng khả năng sáng tạo nội dung.
 * **Am hiểu sâu về Kỹ thuật Marketing & Media:** Nắm rõ chuẩn video TikTok Ads, chuẩn nén mạng Mintegral (< 3 MB), tư vấn ý tưởng kịch bản Hook 3s đầu thu hút khách hàng và mẹo tối ưu chiến dịch.
 * **Giao diện đa nhiệm tiện lợi:** Dễ dàng truy cập qua Tab chuyên dụng hoặc mở cửa sổ trượt nhanh (Slide-over Drawer) bằng nút tròn nổi bất kỳ lúc nào.
+
+---
+
+## ⚙️ Tiện Ích Đột Phá & Trải Nghiệm Người Dùng
+
+* 🔄 **Tự động cập nhật ngầm 100% (Silent In-Place Auto Updater):** Kể từ phiên bản này, mỗi khi có bản cập nhật mới, người dùng chỉ cần mở file cũ lên là ứng dụng tự động kiểm tra, tải về và tráo đổi sang phiên bản mới mà không cần thao tác tải lại thủ công.
+* 🎥 **Tích hợp FFmpeg tự động (Zero-Dependency):** Ứng dụng tự động phát hiện và tải bộ công cụ `ffmpeg` & `ffprobe` độc lập cho cả Windows và macOS ngay lần đầu khởi chạy — người dùng không cần cài đặt thủ công hay dùng lệnh phức tạp.
+* 🪟 **Chế độ No-Console (Windows):** Ứng dụng chạy nền hoàn toàn sạch sẽ, ẩn 100% cửa sổ dòng lệnh đen CMD; tắt ứng dụng an toàn chỉ với 1 nút bấm trên giao diện Web.
+* 🐛 **Báo cáo lỗi 1-Click lên Discord:** Tự động tổng hợp thông số video (`ffprobe`) cùng log hệ thống gửi trực tiếp tới kênh hỗ trợ kỹ thuật.
 
 ---
 

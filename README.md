@@ -6,7 +6,7 @@ Bộ công cụ All-in-One tự động hóa **Tải video đa nền tảng**, *
 
 ---
 
-## 🌟 4 Trụ Cột Tính Năng Chính Trên Dashboard
+## 🌟 5 Trụ Cột Tính Năng Chính Trên Dashboard
 
 ### 1. 📜 KOG Scripts (Tiện Ích & Tự Động Hóa Browser Nhanh)
 ![KOG Scripts Preview](docs/screenshots/tab1_scripts.png)
@@ -58,7 +58,18 @@ Bộ công cụ All-in-One tự động hóa **Tải video đa nền tảng**, *
 
 ---
 
-### 4. 🤖 KOG AI Assistant (Trợ Lý AI Dành Riêng Cho Marketer)
+### 4. 🌍 Localize (Bản Địa Hóa, AI Dubbing & Phụ Đề Đa Nền Tảng)
+* **Lồng tiếng AI Đa Ngữ (300+ Giọng Bản Xứ):** Tự động bóc tách âm thanh lời thoại gốc với Whisper AI, sinh giọng đọc lồng tiếng bản xứ tự nhiên bằng **Edge-TTS Neural (Miễn Phí 100%)** hoặc **ElevenLabs API** siêu cảm xúc.
+* **5 Phong Cách Kịch Bản Chuẩn Google Play Apps:** Dịch thuật tự nhiên theo 5 văn phong phổ quát: *Giới Thiệu Sản Phẩm, Hướng Dẫn Sử Dụng (Tutorial), Bán Hàng (CTA), Hóm Hỉnh, Tự Nhiên*.
+* **3 Preset Phụ Đề Nền Tảng:**
+  - **YouTube Clean (US/Europe):** Phụ đề thanh lịch, dải nền mờ đen chuẩn CC quốc tế, tối ưu kéo view Mỹ & Châu Âu.
+  - **TikTok Dynamic:** Chữ Vàng viền đen to rõ, vị trí trung tâm, nhảy từ bắt mắt.
+  - **Facebook Standard:** Font Arial đậm viền đen dày, né vùng like/share Reels.
+* **Tùy Chọn Xuất File Linh Hoạt:** Mặc định xuất bản video MP4 hoàn chỉnh. Tùy chọn xuất thêm file `.srt` rời, file audio `.mp3` hoặc file kịch bản `.txt` vào thư mục `LocalizedVideos/`.
+
+---
+
+### 5. 🤖 KOG AI Assistant (Trợ Lý AI Dành Riêng Cho Marketer)
 * **KOG Marketer Brain v2.0 tích hợp sẵn:** Hoạt động hoàn toàn miễn phí, offline ngay trên máy, phản hồi tức thì và không tốn chi phí token.
 * **Tùy chọn kết nối Google Gemini Live:** Hỗ trợ kết nối Gemini API để trò chuyện trực tiếp và mở rộng khả năng sáng tạo nội dung.
 * **Am hiểu sâu về Kỹ thuật Marketing & Media:** Nắm rõ chuẩn video TikTok Ads, chuẩn nén mạng Mintegral (< 3 MB), tư vấn ý tưởng kịch bản Hook 3s đầu thu hút khách hàng và mẹo tối ưu chiến dịch.

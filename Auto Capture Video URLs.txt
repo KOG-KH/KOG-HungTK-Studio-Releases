@@ -1,0 +1,140 @@
+(async () => {
+  // --- 0. User Settings (Popup Dialog) ---
+  const userInput = window.prompt(
+      "How many videos do you want to capture before pausing?\n(Enter a number)", 
+      "10"
+  );
+
+  // If the user clicks "Cancel" on the dialog, abort the script
+  if (userInput === null) {
+      console.log("Script cancelled by user.");
+      return; 
+  }
+
+  // Convert their input into a number. Fallback to 10 if they typed text by mistake.
+  let PAUSE_EVERY_X_VIDEOS = parseInt(userInput, 10);
+  if (isNaN(PAUSE_EVERY_X_VIDEOS) || PAUSE_EVERY_X_VIDEOS <= 0) {
+      alert("Invalid number entered. The script will default to pausing every 10 videos.");
+      PAUSE_EVERY_X_VIDEOS = 10;
+  }
+
+  // --- 1. Setup Storage & Observers ---
+  const videoUrls = new Set();
+  let lastPauseCount = 0; 
+
+  // MutationObserver to catch videos as they lazy-load
+  const observer = new MutationObserver(mutations => {
+    mutations.forEach(mutation => {
+      if (mutation.addedNodes.length) {
+        mutation.addedNodes.forEach(node => {
+          if (node.tagName === 'VIDEO' && node.src) {
+            videoUrls.add(node.src);
+            console.log('Captured (Observer):', node.src);
+          }
+          if (node.querySelectorAll) {
+              node.querySelectorAll('video, img.your-image-class').forEach(media => {
+                  if(media.src) {
+                      videoUrls.add(media.src);
+                      console.log('Captured (Observer Child):', media.src);
+                  }
+              });
+          }
+        });
+      }
+    });
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+  console.log('Observer started.');
+
+  // --- 2. Helpers ---
+  const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+  const waitForNewMedia = async (previousSize, maxWaitMs = 10000) => {
+      const checkInterval = 200; 
+      let elapsed = 0;
+
+      while (elapsed < maxWaitMs) {
+          document.querySelectorAll('video').forEach(v => {
+              if(v.src) videoUrls.add(v.src);
+          });
+
+          if (videoUrls.size > previousSize) {
+              console.log(`Media loaded in ${elapsed}ms!`);
+              return true; 
+          }
+
+          await sleep(checkInterval);
+          elapsed += checkInterval;
+      }
+      
+      console.warn(`Timeout: No new media found after ${maxWaitMs / 1000} seconds.`);
+      return false;
+  };
+
+  // --- 3. Main Logic ---
+  const hitboxes = document.querySelectorAll('.bg-\\[\\#33333399\\].backdrop-blur-sm.rounded-full.transition-opacity.flex.items-center.gap-x-\\[6px\\].h-8.pl-\\[14px\\].pr-\\[12px\\]');
+  
+  if (hitboxes.length === 0) {
+      console.error("No hitboxes found. Check selector.");
+      observer.disconnect();
+      return;
+  }
+
+  console.log(`Starting... Clicking first item of ${hitboxes.length} detected.`);
+  hitboxes[0].click();
+  
+  let hasNext = true;
+  let counter = 0;
+
+  while (hasNext) {
+    counter++;
+    const currentUrlCount = videoUrls.size;
+
+    console.log(`[${counter}] Waiting for media to load...`);
+    await waitForNewMedia(currentUrlCount, 10000); 
+
+    // --- PAUSE LOGIC ---
+    if (videoUrls.size > 0 && videoUrls.size % PAUSE_EVERY_X_VIDEOS === 0 && videoUrls.size !== lastPauseCount) {
+        lastPauseCount = videoUrls.size; 
+        
+        const proceed = window.confirm(`Paused: Captured ${videoUrls.size} unique videos.\n\nClick 'OK' to resume scraping, or 'Cancel' to stop and print results.`);
+        
+        if (!proceed) {
+            console.log('User manually stopped the script during pause.');
+            break; 
+        }
+        console.log('Resuming script...');
+    }
+
+    const nextBtn = document.querySelector('.zf-icon-arrow-right');
+
+    if (nextBtn) {
+      nextBtn.style.border = "2px solid red"; 
+      console.log(`[${counter}] Clicking Next...`);
+      nextBtn.click();
+      await sleep(500); 
+    } else {
+      console.log('Next button not found. Reached end of list.');
+      hasNext = false;
+    }
+  }
+
+  // --- 4. Finish ---
+  observer.disconnect();
+  console.log('--- DONE ---');
+  console.log('Total Unique Videos:', videoUrls.size);
+  console.log(Array.from(videoUrls));
+
+  // Tự động copy danh sách URL vào clipboard để dán trực tiếp vào KOG Studio
+  try {
+    const urlsText = Array.from(videoUrls).join('\n');
+    if (typeof copy === 'function') {
+      copy(urlsText);
+    } else if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(urlsText);
+    }
+    console.log('📋 Đã tự động copy danh sách URL vào Clipboard!');
+  } catch (e) {
+    console.warn('Không thể tự động copy vào clipboard:', e);
+  }
+})();

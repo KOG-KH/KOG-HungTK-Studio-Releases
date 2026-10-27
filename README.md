@@ -108,7 +108,7 @@ KOG HungTK Studio đã được đóng gói thành phần mềm độc lập si�
 * **Tự động tạo biểu tượng `KOG HungTK Studio.command` ngay trên màn hình Desktop**.
 * Khởi chạy ứng dụng và tự mở trình duyệt web giao diện làm việc tại `http://127.0.0.1:8000`.
 
-> 💡 **Khởi động những lần tiếp theo:** Chỉ cần ra màn hình Desktop và nhấp đúp vào icon **KOG HungTK Studio.command** là xong! Ứng dụng sẽ tự động kiểm tra và nâng cấp lên phiên bản mới nhất từ GitHub.
+> 💡 **Khởi động những lần tiếp theo:** Chỉ cần ra màn hình Desktop và nhấp đúp vào ứng dụng **KOG HungTK Studio.app** là xong! Ứng dụng chạy độc lập (No-Console, không mở cửa sổ Terminal đen) và tự động kiểm tra nâng cấp lên phiên bản mới nhất từ GitHub.
 
 #### Cách 2: Tải file thủ công từ Releases
 1. Tải file **[KOG_Studio_macOS.zip](https://github.com/KOG-KH/KOG-HungTK-Studio-Releases/releases/latest/download/KOG_Studio_macOS.zip)** về thư mục `Downloads`.

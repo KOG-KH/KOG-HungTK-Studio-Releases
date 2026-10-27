@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # ====================================================================
 #         KOG HUNGTK STUDIO PRO - 1-CLICK INSTALLER FOR MACOS
-#   Tự động cài đặt, cấp quyền, vượt Gatekeeper, Auto-Update & Desktop Launcher
+#   Tự động cài đặt, cấp quyền, vượt Gatekeeper, Auto-Update & Native macOS App (.app)
 # ====================================================================
 
 set -e
@@ -20,7 +20,8 @@ fi
 RELEASE_URL="https://github.com/KOG-KH/KOG-HungTK-Studio-Releases/releases/download/${LATEST_TAG}/KOG_Studio_macOS.zip"
 ZIP_FILE="$INSTALL_DIR/KOG_Studio_macOS.zip"
 DESKTOP_DIR="$HOME/Desktop"
-DESKTOP_LAUNCHER="$DESKTOP_DIR/KOG HungTK Studio.command"
+DESKTOP_OLD_COMMAND="$DESKTOP_DIR/KOG HungTK Studio.command"
+DESKTOP_APP="$DESKTOP_DIR/KOG HungTK Studio.app"
 
 # 0. Đảm bảo tắt tiến trình cũ nếu đang chạy ngầm
 killall -9 KOG_Studio 2>/dev/null || true
@@ -71,57 +72,95 @@ echo "[4/5] 🔑 Đang cấp quyền thực thi & vượt bảo mật macOS Gate
 chmod +x "$INSTALL_DIR/KOG_Studio"
 xattr -cr "$INSTALL_DIR/KOG_Studio" 2>/dev/null || true
 
-# 6. Tạo biểu tượng Smart Launcher ngoài Desktop tích hợp Auto-Update
-echo "[5/5] 🖥️  Đang tạo shortcut 'KOG HungTK Studio' ngoài Desktop (kèm Auto-Update)..."
+# 6. Đóng gói Native macOS App Bundle (.app) & Đè lên file .command cũ
+echo "[5/5] 🍏 Đang đóng gói ứng dụng Native 'KOG HungTK Studio.app' ngoài Desktop..."
+HAD_OLD_COMMAND=false
+if [ -f "$DESKTOP_OLD_COMMAND" ]; then
+    HAD_OLD_COMMAND=true
+    rm -f "$DESKTOP_OLD_COMMAND" 2>/dev/null || true
+    echo "      🔄 Đã phát hiện và dọn dẹp file cũ: KOG HungTK Studio.command"
+fi
+
 if [ -d "$DESKTOP_DIR" ]; then
-cat << 'EOF' > "$DESKTOP_LAUNCHER"
+    rm -rf "$DESKTOP_APP" 2>/dev/null || true
+    mkdir -p "$DESKTOP_APP/Contents/MacOS"
+    mkdir -p "$DESKTOP_APP/Contents/Resources"
+
+    # Tạo Info.plist chuẩn macOS Application
+    cat << 'EOF' > "$DESKTOP_APP/Contents/Info.plist"
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleExecutable</key>
+    <string>launcher</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.kog.hungtkstudio</string>
+    <key>CFBundleName</key>
+    <string>KOG HungTK Studio</string>
+    <key>CFBundleDisplayName</key>
+    <string>KOG HungTK Studio</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>2.2.10</string>
+    <key>CFBundleVersion</key>
+    <string>2.2.10</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>10.15</string>
+    <key>NSHighResolutionCapable</key>
+    <true/>
+    <key>LSUIElement</key>
+    <false/>
+</dict>
+</plist>
+EOF
+
+    # Tạo launcher thực thi ngầm 100% No-Console kèm Auto-Update
+    cat << 'EOF' > "$DESKTOP_APP/Contents/MacOS/launcher"
 #!/usr/bin/env bash
 # ====================================================================
-#      KOG HUNGTK STUDIO PRO - SMART AUTO-UPDATE DESKTOP LAUNCHER
+#     KOG HUNGTK STUDIO PRO - NATIVE MACOS APP LAUNCHER (AUTO-UPDATE)
 # ====================================================================
 
 INSTALL_DIR="$HOME/KOG_HungTK_Studio"
 VERSION_FILE="$INSTALL_DIR/version.txt"
-export PATH="$INSTALL_DIR/bin:$INSTALL_DIR:/opt/homebrew/bin:/usr/local/bin:$PATH"
+export PATH="$INSTALL_DIR/bin:$INSTALL_DIR:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 
-printf "\033]0;KOG HungTK Studio\007"
-cd "$INSTALL_DIR"
+cd "$INSTALL_DIR" || exit 1
 
-# Kiểm tra cập nhật ngầm từ GitHub Release (timeout 3 giây để tránh gián đoạn khi mạng chậm)
+# Tự động dọn dẹp file .command cũ nếu còn sót lại ngoài Desktop
+rm -f "$HOME/Desktop/KOG HungTK Studio.command" 2>/dev/null || true
+
+# Kiểm tra cập nhật ngầm từ GitHub Release (timeout 3 giây tránh treo nếu mạng lag)
 LATEST_TAG=$(curl -s --max-time 3 "https://api.github.com/repos/KOG-KH/KOG-HungTK-Studio-Releases/releases/latest" 2>/dev/null | grep '"tag_name":' | head -n 1 | sed -E 's/.*"([^"]+)".*/\1/')
 CURRENT_TAG=""
 [ -f "$VERSION_FILE" ] && CURRENT_TAG=$(cat "$VERSION_FILE" 2>/dev/null | tr -d '[:space:]')
 
 if [ -n "$LATEST_TAG" ] && [ "$LATEST_TAG" != "$CURRENT_TAG" ]; then
-    echo "=========================================================="
-    echo "   🚀 PHÁT HIỆN BẢN MỚI: $LATEST_TAG (Hiện tại: ${CURRENT_TAG:-v2.0.0})"
-    echo "   📥 Đang tự động cập nhật KOG HungTK Studio..."
-    echo "=========================================================="
+    osascript -e "display notification \"Đang tự động nâng cấp lên $LATEST_TAG...\" with title \"KOG HungTK Studio\" subtitle \"Tự động cập nhật ngầm\"" 2>/dev/null || true
     
     ZIP_URL="https://github.com/KOG-KH/KOG-HungTK-Studio-Releases/releases/download/${LATEST_TAG}/KOG_Studio_macOS.zip"
     ZIP_FILE="$INSTALL_DIR/update_temp.zip"
     
-    if curl -fSL --progress-bar "$ZIP_URL" -o "$ZIP_FILE"; then
+    if curl -fSL "$ZIP_URL" -o "$ZIP_FILE" 2>/dev/null; then
         killall -9 KOG_Studio 2>/dev/null || true
         unzip -q -o "$ZIP_FILE" -d "$INSTALL_DIR"
         rm -f "$ZIP_FILE"
         chmod +x "$INSTALL_DIR/KOG_Studio"
         xattr -cr "$INSTALL_DIR/KOG_Studio" 2>/dev/null || true
         echo "$LATEST_TAG" > "$VERSION_FILE"
-        echo "   ✅ Đã cập nhật thành công lên $LATEST_TAG!"
-        echo "=========================================================="
-        echo ""
+        osascript -e "display notification \"Đã cập nhật thành công lên $LATEST_TAG!\" with title \"KOG HungTK Studio\"" 2>/dev/null || true
     else
-        echo "   ⚠️ Tải bản cập nhật thất bại. Tiếp tục mở phiên bản hiện tại..."
         rm -f "$ZIP_FILE"
     fi
 fi
 
-echo "👉 Đang khởi động KOG HungTK Studio..."
 exec "$INSTALL_DIR/KOG_Studio"
 EOF
-chmod +x "$DESKTOP_LAUNCHER"
-xattr -cr "$DESKTOP_LAUNCHER" 2>/dev/null || true
+
+    chmod +x "$DESKTOP_APP/Contents/MacOS/launcher"
+    xattr -cr "$DESKTOP_APP" 2>/dev/null || true
 fi
 
 echo ""
@@ -129,13 +168,20 @@ echo "=========================================================="
 echo "   🎉 CÀI ĐẶT THÀNH CÔNG KOG HUNGTK STUDIO PRO!"
 echo "   📁 Thư mục cài đặt: $INSTALL_DIR"
 if [ -d "$DESKTOP_DIR" ]; then
-echo "   🖥️  Đã tạo icon 'KOG HungTK Studio' ngoài Desktop!"
-echo "   🔄 Đã tích hợp Silent Auto-Update mỗi khi Double Click!"
+    echo "   🍏 Đã tạo ứng dụng: $DESKTOP_APP"
+    echo "   ✨ 100% Native App: Double click mở ngay, không còn cửa sổ Terminal đen!"
+    echo "   🔄 Đã tích hợp Silent Auto-Update mỗi khi khởi chạy!"
 fi
 echo "   💡 XÁC THỰC THIẾT BỊ: Liên hệ HungTK qua Discord, cung cấp"
 echo "      User Name và Device ID để được cấp quyền sử dụng."
 echo "=========================================================="
 echo ""
+
+# Hiển thị thông báo Toast / Dialog macOS cho người dùng
+if [ "$HAD_OLD_COMMAND" = true ]; then
+    osascript -e 'display dialog "🎉 KOG HungTK Studio đã được nâng cấp thành công sang file .app ngoài Desktop!\n\nFile cũ (.command) đã được gỡ bỏ. Từ bây giờ bạn chỉ cần Double Click vào biểu tượng .app để mở Studio mà không còn bị hiện cửa sổ Terminal đen." with title "KOG HungTK Studio Pro" buttons {"Bắt đầu sử dụng"} default button "Bắt đầu sử dụng"' 2>/dev/null || true
+fi
+
 echo "👉 Đang khởi động KOG HungTK Studio ngay bây giờ..."
 echo ""
 

@@ -81,7 +81,8 @@ Bộ công cụ All-in-One tự động hóa **Tải video đa nền tảng**, *
 
 * 🔄 **Tự động cập nhật ngầm 100% (Silent In-Place Auto Updater):** Kể từ phiên bản này, mỗi khi có bản cập nhật mới, người dùng chỉ cần mở file cũ lên là ứng dụng tự động kiểm tra, tải về và tráo đổi sang phiên bản mới mà không cần thao tác tải lại thủ công.
 * 🎥 **Tích hợp FFmpeg tự động (Zero-Dependency):** Ứng dụng tự động phát hiện và tải bộ công cụ `ffmpeg` & `ffprobe` độc lập cho cả Windows và macOS ngay lần đầu khởi chạy — người dùng không cần cài đặt thủ công hay dùng lệnh phức tạp.
-* 🪟 **Chế độ No-Console (Windows):** Ứng dụng chạy nền hoàn toàn sạch sẽ, ẩn 100% cửa sổ dòng lệnh đen CMD; tắt ứng dụng an toàn chỉ với 1 nút bấm trên giao diện Web.
+* 🍏 **Tăng tốc phần cứng Apple Silicon (VideoToolbox & Metal):** Tự động kích hoạt bộ tăng tốc phần cứng của chip M1/M2/M3/M4 khi biên tập video (nhanh gấp 3-5 lần, tiết kiệm pin, không nóng máy) và tăng tốc Whisper AI qua GPU Metal.
+* 🪟 **Chế độ No-Console 100% (Windows & macOS):** Ứng dụng chạy nền hoàn toàn sạch sẽ, ẩn 100% cửa sổ dòng lệnh đen CMD/Terminal (trên macOS chạy qua Native .app); tắt ứng dụng an toàn chỉ với 1 nút bấm trên giao diện Web.
 * 🐛 **Báo cáo lỗi 1-Click lên Discord:** Tự động tổng hợp thông số video (`ffprobe`) cùng log hệ thống gửi trực tiếp tới kênh hỗ trợ kỹ thuật.
 
 ---

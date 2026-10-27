@@ -15,7 +15,7 @@ echo ""
 INSTALL_DIR="$HOME/KOG_HungTK_Studio"
 LATEST_TAG=$(curl -s --max-time 10 "https://api.github.com/repos/KOG-KH/KOG-HungTK-Studio-Releases/releases/latest" | grep '"tag_name":' | head -n 1 | sed -E 's/.*"([^"]+)".*/\1/')
 if [ -z "$LATEST_TAG" ]; then
-    LATEST_TAG="v2.2.10"
+    LATEST_TAG="v2.2.11"
 fi
 RELEASE_URL="https://github.com/KOG-KH/KOG-HungTK-Studio-Releases/releases/download/${LATEST_TAG}/KOG_Studio_macOS.zip"
 ZIP_FILE="$INSTALL_DIR/KOG_Studio_macOS.zip"
@@ -103,9 +103,9 @@ if [ -d "$DESKTOP_DIR" ]; then
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
-    <string>2.2.10</string>
+    <string>2.2.11</string>
     <key>CFBundleVersion</key>
-    <string>2.2.10</string>
+    <string>2.2.11</string>
     <key>LSMinimumSystemVersion</key>
     <string>10.15</string>
     <key>NSHighResolutionCapable</key>

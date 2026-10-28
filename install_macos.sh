@@ -15,9 +15,10 @@ echo ""
 INSTALL_DIR="$HOME/KOG_HungTK_Studio"
 LATEST_TAG=$(curl -s --max-time 10 "https://api.github.com/repos/KOG-KH/KOG-HungTK-Studio-Releases/releases/latest" | grep '"tag_name":' | head -n 1 | sed -E 's/.*"([^"]+)".*/\1/')
 if [ -z "$LATEST_TAG" ]; then
-    LATEST_TAG="v2.2.14"
+    LATEST_TAG="v2.2.15"
 fi
 RELEASE_URL="https://github.com/KOG-KH/KOG-HungTK-Studio-Releases/releases/download/${LATEST_TAG}/KOG_Studio_macOS.zip"
+MIRROR_URL="https://ghfast.top/$RELEASE_URL"
 ZIP_FILE="$INSTALL_DIR/KOG_Studio_macOS.zip"
 DESKTOP_DIR="$HOME/Desktop"
 DESKTOP_OLD_COMMAND="$DESKTOP_DIR/KOG HungTK Studio.command"
@@ -30,9 +31,12 @@ killall -9 KOG_Studio 2>/dev/null || true
 mkdir -p "$INSTALL_DIR"
 cd "$INSTALL_DIR"
 
-# 2. Tải bản phát hành độc lập từ GitHub Release
-echo "[1/4] 📥 Đang tải KOG HungTK Studio ($LATEST_TAG ~18 MB) từ GitHub..."
-curl -fSL --progress-bar "$RELEASE_URL" -o "$ZIP_FILE"
+# 2. Tải bản phát hành độc lập từ CDN Mirror hoặc GitHub Release
+echo "[1/4] 📥 Đang tải KOG HungTK Studio ($LATEST_TAG ~18 MB)..."
+if ! curl -fSL --connect-timeout 8 --progress-bar "$MIRROR_URL" -o "$ZIP_FILE"; then
+    echo "[!] CDN Mirror bận, chuyển sang tải trực tiếp từ GitHub Releases..."
+    curl -fSL --progress-bar "$RELEASE_URL" -o "$ZIP_FILE"
+fi
 
 # 3. Tự động giải nén & lưu phiên bản
 echo "[2/4] 📦 Đang giải nén bộ cài đặt..."

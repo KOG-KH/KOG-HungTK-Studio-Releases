@@ -1,0 +1,24 @@
+// =========================================================================================
+// MÔ TẢ: Tự động cuộn trang (Auto-Scroll) để tải toàn bộ video trên Facebook Ads Library
+// HƯỚNG DẪN: Mở F12 Console trên trang Facebook Ads Library, dán script này và bấm Enter.
+// =========================================================================================
+(function() {
+    let totalScrolls = 0;
+    let lastHeight = 0;
+
+    function autoScroll() {
+        let scrollHeight = document.body.scrollHeight;
+        window.scrollTo(0, scrollHeight);
+        totalScrolls++;
+
+        if (scrollHeight !== lastHeight) {
+            lastHeight = scrollHeight;
+            console.log(`Scrolled ${totalScrolls} times.`);
+            setTimeout(autoScroll, 3000);  // wait 1.5 sec for new content to load
+        } else {
+            console.log("Reached end of page.");
+        }
+    }
+
+    autoScroll();
+})();

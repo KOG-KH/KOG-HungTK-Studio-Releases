@@ -1,0 +1,55 @@
+// =========================================================================================
+// MÔ TẢ: Nhập list ngôn ngữ muốn tick chọn vào để tick chọn bulk khi dùng tính năng Audio Dubbing trên Heygen
+// HƯỚNG DẪN: Mở F12 Console trên trang Heygen Audio Dubbing, dán script này và bấm Enter.
+// =========================================================================================
+(function() {
+    // 1. Show a popup dialog for the user to paste their list
+    const userInput = prompt("Paste your list of languages from Google Sheets (or separated by commas/newlines):");
+
+    // If user clicks Cancel or enters nothing, stop the script
+    if (!userInput || userInput.trim() === "") {
+        console.log("No input provided. Script canceled.");
+        return;
+    }
+
+    // 2. Split by newlines (\n), tabs (\t), or commas (,). 
+    // This perfectly handles Google Sheets pastes without breaking multi-word languages.
+    const targetLanguages = new Set(
+        userInput.split(/[\n\t,]+/)
+                 .map(lang => lang.trim().toLowerCase())
+                 .filter(Boolean) // Removes any empty strings from accidental double-spaces/newlines
+    );
+
+    // 3. Keep track of languages we've already found
+    const foundLanguages = new Set();
+    
+    const dropdownItems = document.querySelectorAll('button[data-testid="vt-dropdown-item"]');
+
+    dropdownItems.forEach(item => {
+        const languageSpan = item.querySelector('.tw-text-textTitle');
+        
+        if (languageSpan) {
+            // Extract the base language name 
+            const originalName = languageSpan.textContent.trim();
+            const normalizedName = originalName.toLowerCase();
+
+            // 4. Check if we want this language AND haven't selected a version of it yet
+            if (targetLanguages.has(normalizedName) && !foundLanguages.has(normalizedName)) {
+                
+                const checkbox = item.querySelector('input[type="checkbox"]');
+                
+                // 5. Click the hidden checkbox if it isn't already checked
+                if (checkbox && !checkbox.checked) {
+                    checkbox.click(); 
+                }
+                
+                // Mark this language as found so we skip any subsequent regional variants
+                foundLanguages.add(normalizedName);
+            }
+        }
+    });
+
+    // 6. Provide a popup confirmation when finished
+    alert(`Done! Successfully processed ${foundLanguages.size} unique languages.\nCheck the console for details.`);
+    console.log(`Selected languages: ${Array.from(foundLanguages).join(', ')}`);
+})();

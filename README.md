@@ -1,4 +1,4 @@
-# 🚀 KOG HungTK Studio Pro
+# 🚀 KOG HungTK Studio Pro `v2.3.1`
 
 Bộ công cụ All-in-One tự động hóa **Tải video đa nền tảng**, **Sản xuất video hàng loạt** và **Spying Ads** chuyên nghiệp dành riêng cho **Marketer, Media Buyer & Content Creator**, hỗ trợ mượt mà trên cả **Windows** và **Apple macOS**.
 
@@ -27,7 +27,10 @@ Bộ công cụ All-in-One tự động hóa **Tải video đa nền tảng**, *
 
 * **Tải Video Đa Nền Tảng (All-in-One):** Tải video không logo/watermark từ TikTok, Facebook Ads Library, YouTube (Shorts & Video dài), Instagram, SocialPeta.
 * **Kéo Video Siêu Tốc:** Bóc tách dữ liệu gốc từ Facebook và SocialPeta cực nhanh, tải trực tiếp không cần render lại.
-* **Tải Trọn Bộ Facebook Ads Library:** Dán link tìm kiếm từ Facebook Ads Library để bóc tách và tải hàng loạt toàn bộ video quảng cáo của đối thủ hoặc ngành hàng.
+* **Tải Trọn Bộ Facebook Ads Library:** Hỗ trợ dán trực tiếp đường dẫn chi tiết từng quảng cáo (Ad link) hoặc link tìm kiếm toàn trang Ads Library để bóc tách và tải hàng loạt toàn bộ video quảng cáo chất lượng cao.
+* **Tùy Chọn Lưu Linh Hoạt (Chung 1 thư mục + Hậu tố):**
+  - Lưu video theo cấu trúc phân thư mục hoặc gom chung toàn bộ vào 1 thư mục duy nhất kèm hậu tố ngôn ngữ (ví dụ: `Video 33-English.mp4`, `Video 33-Vietnamese.mp4`...).
+  - Quản lý tập trung, cực kỳ thuận tiện khi kéo thả hàng loạt vào CapCut / Premiere / After Effects.
 * **Tải Trọn Bộ Kênh (Bulk Channel):**
   - Quét tải toàn bộ hoặc số lượng chỉ định video từ kênh TikTok, kênh YouTube.
   - Hỗ trợ tùy chọn **Tự động đặt tên theo tiền tố** (`Video 01.mp4`, `Video 02.mp4`...) hoặc giữ nguyên tên gốc.
@@ -35,7 +38,7 @@ Bộ công cụ All-in-One tự động hóa **Tải video đa nền tảng**, *
 * **Chuỗi Xử Lý Tự Động Ngay Khi Tải Về (Post-Download Pipeline):**
   - ✨ **[Mặc định BẬT] Tự động Tăng Nét (Enhance):** Tự động phát hiện video mờ ($< 1080\times 1920$) và áp dụng bộ lọc nâng nét, khử vỡ hình chuẩn TikTok.
   - 📐 **[Tùy chọn] Tự động Chuyển 9:16 Khung Dọc:** Video ngang/vuông sẽ tự động được đưa về tỷ lệ 9:16 dọc với nền mờ (Blur Background) sang chảnh, tự động xóa file gốc không phù hợp.
-  - 🌐 **[Tùy chọn] Phân loại video theo Ngôn ngữ (AI):** Tự động nhận diện tiếng nói (Whisper AI) hoặc chữ trên màn hình (OCR AI) và gom video vào các thư mục ngôn ngữ tương ứng (Anh, Việt, Thái, v.v.).
+  - 🌐 **[Tùy chọn] Phân loại video theo Ngôn ngữ:** Tự động quét mã ngôn ngữ hoặc nhận diện giọng nói (Whisper AI) và phân chia video vào các thư mục ngôn ngữ tương ứng.
   - 🛡️ **Tự động Lọc trùng lặp thông minh:** So khớp dữ liệu luồng video, tự động phát hiện và loại bỏ các video đã có trong kho lưu trữ.
 
 ---
@@ -46,19 +49,19 @@ Bộ công cụ All-in-One tự động hóa **Tải video đa nền tảng**, *
 1. **Tráo Visual Hook 3 giây đầu (A/B Testing đỉnh cao):** Tự động ghép các đoạn mở đầu 3s (Hook) hấp dẫn vào video gốc trong khi âm thanh nền vẫn chạy liền mạch — giải pháp hoàn hảo để nhân bản mẫu quảng cáo test CTR.
 2. **Siêu nén video cho Ads Network (Mintegral / Unity):** Tối ưu giảm dung lượng 50–70% nhưng vẫn giữ độ nét sắc sảo, tải cực nhanh trên các mạng quảng cáo (< 3 MB / < 5 MB).
 3. **Chuẩn hóa đạt chuẩn TikTok Ads Policy:** Tự động điều chỉnh độ dài, upscale bitrate $\ge 516\text{ kbps}$, scale nét tối thiểu $1080\times 1920$ giúp video được duyệt nhanh và không bị bóp reach.
-4. **Tối ưu chuẩn 9:16 TikTok / Reels / Shorts:** Chuyển đổi mọi tỷ lệ video (hỗ trợ cả tỷ lệ lạ như `720x900`) sang khung dọc 9:16 kèm nền mờ nghệ thuật; tự động copy video chuẩn vào thư mục thành phẩm.
+4. **Tối ưu chuẩn 9:16 TikTok / Reels / Shorts:** Chuyển đổi mọi tỷ lệ video sang khung dọc 9:16 kèm nền mờ nghệ thuật; fix chuẩn xác các tỷ lệ cận 9:16 (như 1080x1920 hoặc 9:15.x) giữ nguyên tỷ lệ gốc, ép kích thước chẵn chuẩn FFmpeg.
 5. **Đổi đuôi siêu tốc (Fast Copy):** Chuyển đuôi MOV, WebM, MKV sang MP4 chuẩn chỉ trong 1 giây, hoàn toàn không giảm chất lượng.
 6. **Đóng khung, Chèn Logo & Ghép Intro/Outro:** Gắn logo thương hiệu, chèn khung viền trong suốt và nối đầu/đuôi video tự động hàng loạt.
 7. **Trích xuất ảnh Thumbnail nét cao:** Chụp các khung hình đẹp nhất làm ảnh bìa hàng loạt hoặc thủ công.
 8. **Cắt gọt Video (Trim):** Cắt bỏ đoạn đầu và đoạn đuôi theo từng giây chuẩn xác.
 9. **Biên tập Âm thanh (Audio):** Tách nhạc MP3, thay nhạc nền, phối âm thanh dễ dàng.
-10. **Phân loại ngôn ngữ tự động (Whisper AI):** Nhận diện giọng nói và phân loại video vào thư mục từng quốc gia.
+10. **Phân loại ngôn ngữ chính xác (Sort Video by Language):** Tự động quét chính xác mã ngôn ngữ chuẩn (`-EN`, `_VN`, `[Thai]`, `Spanish`...) trong tên file hoặc giọng nói để sắp xếp video vào từng thư mục tương ứng với độ chính xác 100%.
 11. **Lọc trùng lặp thông minh:** Quét tách biệt luồng hình và tiếng để lọc video trùng mà không xóa nhầm các bản lồng tiếng đa ngôn ngữ.
 12. **Dọn dẹp & Đóng gói lưu trữ (Archive):** 1-Click dọn dẹp và lưu trữ dự án ngăn nắp theo thứ tự chữ cái A-Z.
 
 ---
 
-### 4. 🌍 Localize (Bản Địa Hóa, AI Dubbing & Phụ Đề Đa Nền Tảng)
+### 4. 🌍 Localize (Bản Địa Hóa, AI Dubbing & Phụ Đề Đa Nền Tảng) *(Beta / Đang Hoàn Thiện)*
 * **Lồng tiếng AI Đa Ngữ (300+ Giọng Bản Xứ):** Tự động bóc tách âm thanh lời thoại gốc với Whisper AI, sinh giọng đọc lồng tiếng bản xứ tự nhiên bằng **Edge-TTS Neural (Miễn Phí 100%)** hoặc **ElevenLabs API** siêu cảm xúc.
 * **5 Phong Cách Kịch Bản Chuẩn Google Play Apps:** Dịch thuật tự nhiên theo 5 văn phong phổ quát: *Giới Thiệu Sản Phẩm, Hướng Dẫn Sử Dụng (Tutorial), Bán Hàng (CTA), Hóm Hỉnh, Tự Nhiên*.
 * **3 Preset Phụ Đề Nền Tảng:**
@@ -79,7 +82,8 @@ Bộ công cụ All-in-One tự động hóa **Tải video đa nền tảng**, *
 
 ## ⚙️ Tiện Ích Đột Phá & Trải Nghiệm Người Dùng
 
-* 🔄 **Tự động cập nhật ngầm 100% (Silent In-Place Auto Updater):** Kể từ phiên bản này, mỗi khi có bản cập nhật mới, người dùng chỉ cần mở file cũ lên là ứng dụng tự động kiểm tra, tải về và tráo đổi sang phiên bản mới mà không cần thao tác tải lại thủ công.
+* 🌓 **Chế độ Sáng / Tối (Light & Dark Mode Toggle):** Bổ sung nút chuyển đổi tức thì giữa giao diện Sáng và Tối ngay trên thanh menu, tối ưu độ tương phản, dịu mắt khi làm việc ban đêm và tự động lưu tùy chọn của bạn.
+* 🔄 **Tự động tải ngầm & Cập nhật tức thì (Silent Background Pre-download):** Khi có bản cập nhật mới, phần mềm âm thầm tải bản cập nhật trong nền mà không làm gián đoạn công việc. Khi hoàn tất, nút **[🚀 Cập nhật ngay]** sẽ hiển thị trên thanh menu kèm modal kiểm tra an toàn tác vụ, cho phép cập nhật và khởi động lại chỉ trong 2 giây.
 * 🎥 **Tích hợp FFmpeg tự động (Zero-Dependency):** Ứng dụng tự động phát hiện và tải bộ công cụ `ffmpeg` & `ffprobe` độc lập cho cả Windows và macOS ngay lần đầu khởi chạy — người dùng không cần cài đặt thủ công hay dùng lệnh phức tạp.
 * 🍏 **Tăng tốc phần cứng Apple Silicon (VideoToolbox & Metal):** Tự động kích hoạt bộ tăng tốc phần cứng của chip M1/M2/M3/M4 khi biên tập video (nhanh gấp 3-5 lần, tiết kiệm pin, không nóng máy) và tăng tốc Whisper AI qua GPU Metal.
 * 🪟 **Chế độ No-Console 100% (Windows & macOS):** Ứng dụng chạy nền hoàn toàn sạch sẽ, ẩn 100% cửa sổ dòng lệnh đen CMD/Terminal (trên macOS chạy qua Native .app); tắt ứng dụng an toàn chỉ với 1 nút bấm trên giao diện Web.

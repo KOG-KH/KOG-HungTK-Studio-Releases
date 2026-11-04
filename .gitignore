@@ -1,0 +1,19 @@
+# KOG Studio Releases - Strict Distribution Ignore
+*.py
+*.pyc
+*.txt
+*.bat
+*.vbs
+*.json
+*.spec
+*.log
+*.zip
+*.exe
+*.bak
+*.tmp
+__pycache__/
+build/
+dist/
+.env*
+.auth*
+.google*

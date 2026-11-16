@@ -18,7 +18,6 @@ if [ -z "$LATEST_TAG" ]; then
     LATEST_TAG="v2.2.18"
 fi
 RELEASE_URL="https://github.com/KOG-KH/KOG-HungTK-Studio-Releases/releases/download/${LATEST_TAG}/KOG_Studio_macOS.zip"
-MIRROR_URL="https://ghfast.top/$RELEASE_URL"
 ZIP_FILE="$INSTALL_DIR/KOG_Studio_macOS.zip"
 DESKTOP_DIR="$HOME/Desktop"
 DESKTOP_OLD_COMMAND="$DESKTOP_DIR/KOG HungTK Studio.command"
@@ -31,12 +30,9 @@ killall -9 KOG_Studio 2>/dev/null || true
 mkdir -p "$INSTALL_DIR"
 cd "$INSTALL_DIR"
 
-# 2. Tải bản phát hành độc lập từ CDN Mirror hoặc GitHub Release
+# 2. Tải bản phát hành độc lập trực tiếp từ GitHub Releases chính thức (Bảo mật Supply Chain)
 echo "[1/4] 📥 Đang tải KOG HungTK Studio ($LATEST_TAG ~18 MB)..."
-if ! curl -fSL --connect-timeout 8 --progress-bar "$MIRROR_URL" -o "$ZIP_FILE"; then
-    echo "[!] CDN Mirror bận, chuyển sang tải trực tiếp từ GitHub Releases..."
-    curl -fSL --progress-bar "$RELEASE_URL" -o "$ZIP_FILE"
-fi
+curl -fSL --progress-bar "$RELEASE_URL" -o "$ZIP_FILE"
 
 # 3. Tự động giải nén & lưu phiên bản
 echo "[2/4] 📦 Đang giải nén bộ cài đặt..."
@@ -52,17 +48,25 @@ if ! command -v ffmpeg &> /dev/null && [ ! -f "$INSTALL_DIR/ffmpeg" ] && [ ! -f 
     ARCH=$(uname -m)
     if [ "$ARCH" = "arm64" ]; then
         FFMPEG_URL="https://github.com/Tyrrrz/FFmpegBin/releases/download/9.0.2/ffmpeg-osx-arm64.zip"
+        EXPECTED_SHA="7d22a2893ccd761c3b4214165975e306d6c85c1de188f79f7e2723070c0006e4"
     else
         FFMPEG_URL="https://github.com/Tyrrrz/FFmpegBin/releases/download/9.0.2/ffmpeg-osx-x64.zip"
+        EXPECTED_SHA="e1938c2df4024c13eeef068f5561e7782ec4003b3f40b428065147e40b92e9a0"
     fi
     FFMPEG_ZIP="$INSTALL_DIR/ffmpeg_temp.zip"
     if curl -fSL --progress-bar "$FFMPEG_URL" -o "$FFMPEG_ZIP"; then
-        unzip -q -o "$FFMPEG_ZIP" -d "$BIN_DIR" 2>/dev/null || unzip -q -o "$FFMPEG_ZIP" -d "$INSTALL_DIR" 2>/dev/null
-        rm -f "$FFMPEG_ZIP"
-        chmod +x "$BIN_DIR/ffmpeg" "$BIN_DIR/ffprobe" 2>/dev/null || true
-        chmod +x "$INSTALL_DIR/ffmpeg" "$INSTALL_DIR/ffprobe" 2>/dev/null || true
-        xattr -cr "$BIN_DIR" 2>/dev/null || true
-        echo "      ✅ Đã tích hợp FFmpeg & FFprobe độc lập thành công!"
+        CALC_SHA=$(shasum -a 256 "$FFMPEG_ZIP" | awk '{print $1}')
+        if [ "$CALC_SHA" != "$EXPECTED_SHA" ]; then
+            echo "      ❌ Lỗi toàn vẹn: Mã băm SHA-256 của FFmpeg không khớp với bản phát hành được chứng thực!"
+            rm -f "$FFMPEG_ZIP"
+        else
+            unzip -q -o "$FFMPEG_ZIP" -d "$BIN_DIR" 2>/dev/null || unzip -q -o "$FFMPEG_ZIP" -d "$INSTALL_DIR" 2>/dev/null
+            rm -f "$FFMPEG_ZIP"
+            chmod +x "$BIN_DIR/ffmpeg" "$BIN_DIR/ffprobe" 2>/dev/null || true
+            chmod +x "$INSTALL_DIR/ffmpeg" "$INSTALL_DIR/ffprobe" 2>/dev/null || true
+            xattr -cr "$BIN_DIR" 2>/dev/null || true
+            echo "      ✅ Đã xác thực SHA-256 và tích hợp FFmpeg & FFprobe độc lập thành công!"
+        fi
     else
         echo "      ⚠️ Không thể tải tự động FFmpeg. Bạn có thể cài qua: brew install ffmpeg"
         rm -f "$FFMPEG_ZIP"

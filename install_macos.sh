@@ -15,7 +15,7 @@ echo ""
 INSTALL_DIR="$HOME/KOG_HungTK_Studio"
 LATEST_TAG=$(curl -s --max-time 10 "https://api.github.com/repos/KOG-KH/KOG-HungTK-Studio-Releases/releases/latest" | grep '"tag_name":' | head -n 1 | sed -E 's/.*"([^"]+)".*/\1/')
 if [ -z "$LATEST_TAG" ]; then
-    LATEST_TAG="v2.3.20"
+    LATEST_TAG="v2.3.21"
 fi
 RELEASE_URL="https://github.com/KOG-KH/KOG-HungTK-Studio-Releases/releases/download/${LATEST_TAG}/KOG_Studio_macOS.zip"
 ZIP_FILE="$INSTALL_DIR/KOG_Studio_macOS.zip"
@@ -94,6 +94,11 @@ if [ -d "$DESKTOP_DIR" ]; then
     mkdir -p "$DESKTOP_APP/Contents/MacOS"
     mkdir -p "$DESKTOP_APP/Contents/Resources"
 
+    # Sao chép biểu tượng Native AppIcon nếu có
+    if [ -f "$INSTALL_DIR/static/AppIcon.icns" ]; then
+        cp "$INSTALL_DIR/static/AppIcon.icns" "$DESKTOP_APP/Contents/Resources/AppIcon.icns"
+    fi
+
     # Tạo Info.plist chuẩn macOS Application
     cat << 'EOF' > "$DESKTOP_APP/Contents/Info.plist"
 <?xml version="1.0" encoding="UTF-8"?>
@@ -102,6 +107,8 @@ if [ -d "$DESKTOP_DIR" ]; then
 <dict>
     <key>CFBundleExecutable</key>
     <string>launcher</string>
+    <key>CFBundleIconFile</key>
+    <string>AppIcon</string>
     <key>CFBundleIdentifier</key>
     <string>com.kog.hungtkstudio</string>
     <key>CFBundleName</key>
@@ -111,9 +118,9 @@ if [ -d "$DESKTOP_DIR" ]; then
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
-    <string>2.2.11</string>
+    <string>2.3.21</string>
     <key>CFBundleVersion</key>
-    <string>2.2.11</string>
+    <string>2.3.21</string>
     <key>LSMinimumSystemVersion</key>
     <string>10.15</string>
     <key>NSHighResolutionCapable</key>
@@ -169,6 +176,7 @@ EOF
 
     chmod +x "$DESKTOP_APP/Contents/MacOS/launcher"
     xattr -cr "$DESKTOP_APP" 2>/dev/null || true
+    touch "$DESKTOP_APP" 2>/dev/null || true
 fi
 
 echo ""

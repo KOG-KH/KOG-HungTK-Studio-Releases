@@ -34,6 +34,24 @@ cd "$INSTALL_DIR"
 echo "[1/4] 📥 Đang tải KOG HungTK Studio ($LATEST_TAG ~18 MB)..."
 curl -fSL --progress-bar "$RELEASE_URL" -o "$ZIP_FILE"
 
+# Xác thực SHA-256 nếu máy chủ có phát hành checksums.sha256
+CHECKSUM_URL="https://github.com/KOG-KH/KOG-HungTK-Studio-Releases/releases/download/${LATEST_TAG}/checksums.sha256"
+CHECKSUM_FILE="$INSTALL_DIR/checksums.sha256"
+if curl -s -fSL --max-time 5 "$CHECKSUM_URL" -o "$CHECKSUM_FILE" 2>/dev/null && [ -f "$CHECKSUM_FILE" ]; then
+    EXPECTED_SHA=$(grep "KOG_Studio_macOS.zip" "$CHECKSUM_FILE" 2>/dev/null | awk '{print $1}')
+    if [ -n "$EXPECTED_SHA" ]; then
+        ACTUAL_SHA=$(shasum -a 256 "$ZIP_FILE" 2>/dev/null | awk '{print $1}')
+        if [ "$EXPECTED_SHA" != "$ACTUAL_SHA" ]; then
+            echo "   ❌ Lỗi toàn vẹn: Gói KOG_Studio_macOS.zip không khớp mã băm SHA-256!"
+            rm -f "$ZIP_FILE" "$CHECKSUM_FILE"
+            exit 1
+        else
+            echo "   ✅ Đã xác thực mã băm SHA-256 toàn vẹn cho gói cài đặt macOS!"
+        fi
+    fi
+    rm -f "$CHECKSUM_FILE" 2>/dev/null || true
+fi
+
 # 3. Tự động giải nén & lưu phiên bản
 echo "[2/4] 📦 Đang giải nén bộ cài đặt..."
 unzip -q -o "$ZIP_FILE" -d "$INSTALL_DIR"
@@ -100,7 +118,12 @@ if [ -d "$DESKTOP_DIR" ]; then
     fi
 
     # Tạo Info.plist chuẩn macOS Application
-    cat << 'EOF' > "$DESKTOP_APP/Contents/Info.plist"
+    # Chuẩn hóa số phiên bản cho macOS App Bundle
+    CLEAN_VERSION="${LATEST_TAG#v}"
+    [ -z "$CLEAN_VERSION" ] && CLEAN_VERSION="2.3.29"
+
+    # Tạo Info.plist chuẩn macOS Application
+    cat << EOF > "$DESKTOP_APP/Contents/Info.plist"
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -118,9 +141,9 @@ if [ -d "$DESKTOP_DIR" ]; then
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
-    <string>2.3.26</string>
+    <string>${CLEAN_VERSION}</string>
     <key>CFBundleVersion</key>
-    <string>2.3.26</string>
+    <string>${CLEAN_VERSION}</string>
     <key>LSMinimumSystemVersion</key>
     <string>10.15</string>
     <key>NSHighResolutionCapable</key>
@@ -131,7 +154,7 @@ if [ -d "$DESKTOP_DIR" ]; then
 </plist>
 EOF
 
-    # Tạo launcher thực thi ngầm 100% No-Console kèm Auto-Update
+    # Tạo launcher thực thi ngầm 100% No-Console kèm Auto-Update & SHA-256 Verification
     cat << 'EOF' > "$DESKTOP_APP/Contents/MacOS/launcher"
 #!/usr/bin/env bash
 # ====================================================================
@@ -156,18 +179,34 @@ if [ -n "$LATEST_TAG" ] && [ "$LATEST_TAG" != "$CURRENT_TAG" ]; then
     osascript -e "display notification \"Đang tự động nâng cấp lên $LATEST_TAG...\" with title \"KOG HungTK Studio\" subtitle \"Tự động cập nhật ngầm\"" 2>/dev/null || true
     
     ZIP_URL="https://github.com/KOG-KH/KOG-HungTK-Studio-Releases/releases/download/${LATEST_TAG}/KOG_Studio_macOS.zip"
+    CHECKSUM_URL="https://github.com/KOG-KH/KOG-HungTK-Studio-Releases/releases/download/${LATEST_TAG}/checksums.sha256"
     ZIP_FILE="$INSTALL_DIR/update_temp.zip"
+    CHECKSUM_FILE="$INSTALL_DIR/update_checksums.sha256"
     
     if curl -fSL "$ZIP_URL" -o "$ZIP_FILE" 2>/dev/null; then
-        killall -9 KOG_Studio 2>/dev/null || true
-        unzip -q -o "$ZIP_FILE" -d "$INSTALL_DIR"
-        rm -f "$ZIP_FILE"
-        chmod +x "$INSTALL_DIR/KOG_Studio"
-        xattr -cr "$INSTALL_DIR/KOG_Studio" 2>/dev/null || true
-        echo "$LATEST_TAG" > "$VERSION_FILE"
-        osascript -e "display notification \"Đã cập nhật thành công lên $LATEST_TAG!\" with title \"KOG HungTK Studio\"" 2>/dev/null || true
+        VERIFY_OK=true
+        if curl -s -fSL --max-time 4 "$CHECKSUM_URL" -o "$CHECKSUM_FILE" 2>/dev/null && [ -f "$CHECKSUM_FILE" ]; then
+            EXPECTED_SHA=$(grep "KOG_Studio_macOS.zip" "$CHECKSUM_FILE" 2>/dev/null | awk '{print $1}')
+            if [ -n "$EXPECTED_SHA" ]; then
+                ACTUAL_SHA=$(shasum -a 256 "$ZIP_FILE" 2>/dev/null | awk '{print $1}')
+                if [ "$EXPECTED_SHA" != "$ACTUAL_SHA" ]; then
+                    VERIFY_OK=false
+                    rm -f "$ZIP_FILE" "$CHECKSUM_FILE"
+                fi
+            fi
+        fi
+
+        if [ "$VERIFY_OK" = true ]; then
+            killall -9 KOG_Studio 2>/dev/null || true
+            unzip -q -o "$ZIP_FILE" -d "$INSTALL_DIR"
+            rm -f "$ZIP_FILE" "$CHECKSUM_FILE" 2>/dev/null || true
+            chmod +x "$INSTALL_DIR/KOG_Studio"
+            xattr -cr "$INSTALL_DIR/KOG_Studio" 2>/dev/null || true
+            echo "$LATEST_TAG" > "$VERSION_FILE"
+            osascript -e "display notification \"Đã cập nhật thành công lên $LATEST_TAG!\" with title \"KOG HungTK Studio\"" 2>/dev/null || true
+        fi
     else
-        rm -f "$ZIP_FILE"
+        rm -f "$ZIP_FILE" "$CHECKSUM_FILE" 2>/dev/null || true
     fi
 fi
 

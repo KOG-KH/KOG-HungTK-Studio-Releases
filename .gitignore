@@ -1,0 +1,53 @@
+# ==============================================================
+# KOG STUDIO PRO - RELEASES REPOSITORY .GITIGNORE
+# Chống rò rỉ mã nguồn, cache, thông tin đăng nhập, binaries và file tạm
+# ==============================================================
+
+# Binaries & Archives (Phân phối qua GitHub Releases Asset, không commit vào Git)
+*.exe
+*.dll
+*.zip
+*.tar.gz
+*.7z
+*.dmg
+*.pkg
+*.app/
+
+# Logs, Cache & Temp Files
+*.log
+*.tmp
+*.bak
+*.old
+*.swp
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Secrets & Configs
+*.env
+*.env.*
+*.json
+!version.json
+*token*
+*secret*
+*cookie*
+*credential*
+.auth_cache.json
+.pacing_daily_cache.json
+.google_*
+
+# Build & Runtime Artifacts
+build/
+dist/
+__pycache__/
+*.pyc
+*.pyo
+venv*/
+.venv/
+
+# Screenshots & Media Dumps
+*.png
+*.jpg
+*.jpeg
+*.mp4
+*.mov

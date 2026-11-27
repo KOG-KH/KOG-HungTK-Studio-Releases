@@ -15,7 +15,7 @@ echo ""
 INSTALL_DIR="$HOME/KOG_HungTK_Studio"
 LATEST_TAG=$(curl -s --max-time 10 "https://api.github.com/repos/KOG-KH/KOG-HungTK-Studio-Releases/releases/latest" | grep '"tag_name":' | head -n 1 | sed -E 's/.*"([^"]+)".*/\1/')
 if [ -z "$LATEST_TAG" ]; then
-    LATEST_TAG="v2.3.31"
+    LATEST_TAG="v2.3.33"
 fi
 RELEASE_URL="https://github.com/KOG-KH/KOG-HungTK-Studio-Releases/releases/download/${LATEST_TAG}/KOG_Studio_macOS.zip"
 ZIP_FILE="$INSTALL_DIR/KOG_Studio_macOS.zip"
@@ -120,7 +120,7 @@ if [ -d "$DESKTOP_DIR" ]; then
     # Tạo Info.plist chuẩn macOS Application
     # Chuẩn hóa số phiên bản cho macOS App Bundle
     CLEAN_VERSION="${LATEST_TAG#v}"
-    [ -z "$CLEAN_VERSION" ] && CLEAN_VERSION="2.3.30"
+    [ -z "$CLEAN_VERSION" ] && CLEAN_VERSION="2.3.33"
 
     # Tạo Info.plist chuẩn macOS Application
     cat << EOF > "$DESKTOP_APP/Contents/Info.plist"
